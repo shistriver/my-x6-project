@@ -168,6 +168,14 @@ export interface RoomHoverPayload {
   rect: { left: number; top: number; right: number; bottom: number; width: number; height: number }
 }
 
+/** RoomAllocate 页房间节点点击回抛的数据（只读，不改画布） */
+export interface RoomAllocateClickPayload {
+  id: string
+  /** 节点显示文字（房间号） */
+  label: string
+  room: RoomInfo
+}
+
 /** 空房间信息：所有字段的兜底值（属性面板初始化表单也用） */
 export function createRoomInfo(): RoomInfo {
   return {
@@ -1940,6 +1948,56 @@ export class GraphEditor {
       this.setPreviewHover(node, false)
       cb(null)
     })
+  }
+
+  /**
+   * RoomAllocate 页专用：加载后一次性给所有房间节点打「可分配 / 不可分配」状态 class。
+   * - 可分配：`room-allocatable`（黄色高亮 + pointer 光标）
+   * - 不可分配：`room-not-allocatable`（灰化 + not-allowed 光标）
+   * 状态色持续显示（对齐图1：27 号常亮黄、其余常灰），非 hover 临时效果。
+   * 样式只加在视图 <g> 的 class 上，不写节点数据；应在 loadJSONForPreview 之后调用。
+   */
+  markAllocationStates(isAllocatable: (label: string, nodeId: string) => boolean): void {
+    const g = this.graph
+    if (!g) return
+    const rooms = g.getNodes().filter((n) => this.isRoomNode(n))
+    rooms.forEach((node) => {
+      const label = this.readNodeLabel(node).trim()
+      const ok = isAllocatable(label, node.id)
+      this.setAllocationClass(node, 'room-allocatable', ok)
+      this.setAllocationClass(node, 'room-not-allocatable', !ok)
+      // 光标直接设在视图 <g>（子 rect/text 继承），否则挂在容器 div 上无法穿透 SVG
+      this.setRoomCursor(node, ok ? 'pointer' : 'not-allowed')
+    })
+  }
+
+  /**
+   * RoomAllocate 页专用：订阅房间节点点击。只有可分配节点回抛弹框数据，
+   * 灰态（不可分配）与非房间节点点击均不响应。只读，不改画布。
+   */
+  onRoomClickForAllocation(
+    isAllocatable: (label: string, nodeId: string) => boolean,
+    cb: (payload: RoomAllocateClickPayload) => void,
+  ): void {
+    const g = this.graph
+    if (!g || !this.preview) return
+    g.on('node:click', ({ node }: { node: Node }) => {
+      if (!this.isRoomNode(node)) return
+      const label = this.readNodeLabel(node).trim()
+      if (!isAllocatable(label, node.id)) return
+      cb({ id: node.id, label, room: this.readRoomInfo(node) })
+    })
+  }
+
+  /** 给节点视图根元素 <g> 加/移除分配态 class（不污染节点数据） */
+  private setAllocationClass(node: Node, cls: 'room-allocatable' | 'room-not-allocatable', on: boolean): void {
+    const g = this.graph
+    if (!g) return
+    const view = g.findViewByCell(node)
+    const el = view?.container as SVGElement | undefined
+    if (!el || typeof el.classList?.add !== 'function') return
+    if (on) el.classList.add(cls)
+    else el.classList.remove(cls)
   }
 
   /** 是否为房间节点（shape 为 room-number，详情弹框仅对其生效） */

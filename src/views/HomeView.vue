@@ -301,8 +301,8 @@ const offerDraftRestore = () => {
     })
 }
 
-// ---------------- 预览 / 前台接待：新开只读路由页面（不可平移/缩放/改变大小） ----------------
-const openReadOnlyPage = (route: 'preview' | 'reception') => {
+// ---------------- 预览 / 前台接待 / 房间分配：新开只读路由页面（不可平移/缩放/改变大小） ----------------
+const openReadOnlyPage = (route: 'preview' | 'reception' | 'room-allocate') => {
   const json = editor.value?.exportJSON()
   if (json == null) return
   // 把当前画布写入本地，供只读页读取（同源 localStorage 共享）
@@ -311,6 +311,7 @@ const openReadOnlyPage = (route: 'preview' | 'reception') => {
 }
 const openPreview = () => openReadOnlyPage('preview')
 const openReception = () => openReadOnlyPage('reception')
+const openRoomAllocate = () => openReadOnlyPage('room-allocate')
 
 // ---------------- 右键菜单 ----------------
 const menuVisible = ref(false)
@@ -546,6 +547,7 @@ onBeforeUnmount(() => {
           <el-button @click="handleLoadDraft">恢复草稿</el-button>
           <el-button type="primary" @click="openPreview">预览</el-button>
           <el-button @click="openReception">前台接待</el-button>
+          <el-button @click="openRoomAllocate">房间分配</el-button>
           <el-button @click="toggleGuides">{{ guidesVisible ? '隐藏参考线' : '显示参考线' }}</el-button>
           <el-button @click="handleClearGuides">清除参考线</el-button>
           <el-tooltip content="快捷键说明" placement="bottom">

@@ -2,7 +2,14 @@
 import { computed, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { GraphEditor, type RoomHoverPayload } from '@/graph/GraphEditor'
-import { getRoomGuestInfo, isRoomEmpty, type GuestPerson, type RoomGuestInfo } from '@/graph/receptionData'
+import {
+  getRoomGuestInfo,
+  isRoomEmpty,
+  allocationToGuestInfo,
+  type GuestPerson,
+  type RoomGuestInfo,
+} from '@/graph/receptionData'
+import { getAllocation } from '@/graph/allocationData'
 
 const router = useRouter()
 const containerRef = ref<HTMLDivElement>()
@@ -15,10 +22,12 @@ const PREVIEW_KEY = 'camp-map-preview'
 /** 当前 hover 的房间节点（null = 无 hover，卡片隐藏） */
 const hovered = ref<RoomHoverPayload | null>(null)
 
-/** hover 卡片的房间客人数据（mock，按房号/节点 id 命中场景） */
+/** hover 卡片的房间客人数据：优先显示「房间分配」已同步的旅客，否则走 mock 场景 */
 const guestInfo = computed<RoomGuestInfo | null>(() => {
   const h = hovered.value
   if (!h) return null
+  const alloc = getAllocation(h.id)
+  if (alloc) return allocationToGuestInfo(alloc)
   return getRoomGuestInfo(h.roomNo, h.id, h.category)
 })
 

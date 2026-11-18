@@ -23,6 +23,11 @@ const router = createRouter({
       name: 'reception',
       component: () => import('@/views/ReceptionView.vue'),
     },
+    {
+      path: '/room-allocate',
+      name: 'room-allocate',
+      component: () => import('@/views/RoomAllocateView.vue'),
+    },
   ],
   scrollBehavior() {
     return { top: 0 }

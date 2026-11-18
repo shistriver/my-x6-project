@@ -131,3 +131,31 @@ export const isRoomEmpty = (info: RoomGuestInfo): boolean =>
   info.next.length === 0 &&
   info.current.length === 0 &&
   info.assigned.length === 0
+
+/**
+ * 把「房间分配」结果的旅客信息转成 reception 卡片数据：
+ * 已分配的旅客作为 Current Guest 显示，company/department 对齐卡片字段。
+ * 用于房间分配页确认后跳转 reception 时的数据同步。
+ */
+export function allocationToGuestInfo(alloc: {
+  roomNo: string
+  fullName: string
+  position: string
+  department: string
+  company: string
+}): RoomGuestInfo {
+  return {
+    roomNo: alloc.roomNo,
+    category: 'Guest Room',
+    previous: [],
+    next: [],
+    current: [
+      {
+        name: alloc.fullName,
+        company: alloc.company,
+        department: alloc.department,
+      },
+    ],
+    assigned: [],
+  }
+}

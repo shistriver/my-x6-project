@@ -68,3 +68,18 @@
 .preview-node-hover {
   filter: drop-shadow(0 0 3px rgba(245, 130, 32, 0.9));
 }
+
+/* RoomAllocate 态：可分配房间保留画布原本设置的颜色，仅用 pointer 光标区分（见 markAllocationStates），不加任何颜色覆盖 */
+/* 不可分配房间 = 填充 #f3f5f8 / 描边 #edeef3 / 文字 #b8b6b6，不做整体灰化（opacity 保持 1，光标 not-allowed 区分） */
+.room-not-allocatable rect {
+  fill: #f3f5f8 !important;
+  stroke: #edeef3 !important;
+}
+/* topbar 是节点内第二个 rect（markup: body, topbar, label, area），单独设为 #edeef3，覆盖上面的通用 rect 规则 */
+.room-not-allocatable rect:nth-of-type(2) {
+  fill: #edeef3 !important;
+  stroke: #edeef3 !important;
+}
+.room-not-allocatable text {
+  fill: #b8b6b6 !important;
+}
