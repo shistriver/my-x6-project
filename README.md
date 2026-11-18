@@ -1,5 +1,170 @@
-# Vue 3 + TypeScript + Vite
+# 营地地图布局编辑器（Camp Map Editor）
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+基于 **Vue 3 + TypeScript + Vite + AntV X6 3.x + Element Plus** 的营地平面图可视化编辑器。
+用于绘制营地布局（编号房间、墙体、文字标注等）、管理多张营地地图、在属性面板中配置节点样式与房间业务信息，并提供**只读预览页**用于查看布局和确认房间分配。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+---
+
+## 功能特性
+
+| 模块 | 能力 |
+| --- | --- |
+| 画布编辑 | 节点拖放创建、点击/框选/Ctrl 多选、移动与微调、缩放（30%~300%）、空格拖拽平移、复制粘贴、撤销/重做、全选、删除（组合递归删除）、层级调整（置顶/置底/上移/下移） |
+| 对齐与排版 | 左/右/顶/底/水平居中/垂直居中 6 种对齐；水平/垂直间距均匀分布（≥3 个单元可用）；拖节点自动吸附对齐线 |
+| 标尺与参考线 | 顶部/左侧标尺；从标尺拖出自定参考线、节点拖动时吸附、参考线显隐与一键清除 |
+| 组合 | 支持组合/取消组合/移出成员；**支持嵌套组合**；点击选成员、拖动移成员、Alt 拖动移整组；组合整体复制粘贴、整体旋转 |
+| 节点库 | 编号房间、L 形墙、直线墙、矩形、圆、文字（文字节点按内容自适应尺寸） |
+| 属性面板 | 单选编辑文字/字号/颜色/加粗、位置尺寸、填充/描边/圆角/墙厚；编号房间的归属公司、面积标注、顶部色条；多节点批量样式（含房间专属批量项） |
+| 地图管理 | 多张营地地图的新建/修改/删除/切换；名称去重、位置级联多选；切换地图自动保存旧画布、加载目标画布 |
+| 数据存取 | 画布导出/导入 JSON、保存/恢复草稿、清空画布（二次确认、可撤销）、示例 JSON 可直接导入 |
+| 只读预览 | 独立路由页面，原比例展示、可滚动、禁编辑；点击房间查看/确认分配/解除绑定；点击普通节点弹出信息卡；未分配房间置灰 |
+| 事件开关 | 非房间节点可配置预览态的点击 / hover 交互；房间交互由分配状态控制 |
+
+---
+
+## 技术栈
+
+| 类别 | 技术 |
+| --- | --- |
+| 框架 | Vue 3（`<script setup>` SFC） |
+| 语言 | TypeScript（构建时经 `vue-tsc` 类型检查） |
+| 构建 | Vite |
+| 画布 | `@antv/x6` 3.x（Selection / Snapline / Transform / Keyboard / Clipboard / History / Dnd 均为内置插件） |
+| UI | Element Plus |
+| 路由 | Vue Router（`createWebHistory`） |
+
+---
+
+## 快速开始
+
+环境要求：**Node.js 20.19+ 或 22.12+**，推荐使用 `pnpm`（仓库自带 `pnpm-lock.yaml`）。
+
+```bash
+# 安装依赖
+pnpm install
+
+# 启动开发服务器
+pnpm dev
+
+# 类型检查 + 生产构建
+pnpm build
+
+# 本地预览构建产物
+pnpm preview
+```
+
+开发服务器默认运行在 `http://localhost:5173`。
+
+---
+
+## 页面与界面
+
+| 路由 | 页面 | 说明 |
+| --- | --- | --- |
+| `/` | [HomeView.vue](src/views/HomeView.vue) | 编辑页，三栏布局 |
+| `/preview` | [PreviewView.vue](src/views/PreviewView.vue) | 只读预览页，由编辑页点击「预览」后新标签页打开 |
+| `/about` | AboutView.vue | 脚手架占位页 |
+
+### 编辑页布局
+
+```
+┌──────────────┬───────────────────────────────┬────────────────┐
+│ 节点库        │ 工具栏                         │ 属性面板        │
+│ （拖拽创建）   ├──────────────┬────────────────┤ （单选 / 批量） │
+│              │ 顶部标尺      │               │                │
+│ 营地地图列表   ├──────────────┤    X6 画布     │                │
+│ （增删改切换） │ 左侧标尺      │               │                │
+└──────────────┴──────────────┴────────────────┴────────────────┘
+```
+
+- 左栏 220px：上半区为节点库，下半区为营地地图列表。
+- 中栏：工具栏 + 带标尺的画布区，宽度随窗口自适应。
+- 右栏 280px：属性面板，跟随选区在「空态 / 批量样式 / 房间批量 / 单选」间切换。
+
+### 节点类型
+
+| 节点 | 说明 |
+| --- | --- |
+| 编号房间 | 竖向房间块：顶部色条 + 居中加粗编号 + 可选面积标注；顶部色条与描边颜色由「归属公司」统一驱动 |
+| L 形墙 / 直线墙 | 墙体按节点包围盒绘制，拖动缩放时与选框严丝合缝；墙厚由属性面板控制 |
+| 矩形 / 圆 | 基础图形，可编辑填充、描边、圆角、文字 |
+| 文字 | 透明本体、仅显示文字，尺寸随文字内容自适应；可设加粗 |
+| 组合容器 | 组合时自动生成的隐形父节点，平时不可见，hover 整组时显示轮廓 |
+
+### 右键菜单
+
+- **空白处**：粘贴、全选、在此新增节点。
+- **选中节点**：组合 / 取消组合（或移出组合）、6 种对齐、复制、置于顶层/上一层/下一层/底层、删除。
+- 菜单是动态生成的：只显示当前选区下可执行的操作，按钮状态与画布实时同步。
+
+---
+
+## 快捷键
+
+| 分组 | 快捷键 | 说明 |
+| --- | --- | --- |
+| 通用 | `Ctrl / Cmd + Z` | 撤销 |
+|  | `Ctrl / Cmd + Shift + Z` | 重做 |
+|  | `Ctrl / Cmd + A` | 全选画布内节点 |
+|  | `Delete / Backspace` | 删除选中节点（含组合成员，递归删除） |
+| 复制粘贴 | `Ctrl / Cmd + C` | 复制（组合整体复制） |
+|  | `Ctrl / Cmd + V` | 粘贴（自动偏移 32px，保持成组） |
+| 选择 | `Ctrl / Cmd + 点击` | 多选切换（逐个加 / 减选） |
+|  | 拖拽空白处 | 框选多个节点（几何相交即选） |
+| 视图 | `Ctrl / Cmd + 0` | 重置缩放至 100% |
+|  | `Ctrl / Cmd + -` / `+` | 缩小 / 放大（每次 0.2） |
+|  | 按住空格 + 拖拽 | 平移画布（任意位置，含节点/组合上） |
+| 移动 | `↑ ↓ ← →` | 移动选中节点 1px |
+|  | `Shift + 方向键` | 移动选中节点 10px |
+|  | `Alt + 方向键` | 整组移动 1px |
+|  | `Alt + Shift + 方向键` | 整组移动 10px |
+
+> 快捷键需在画布内点击聚焦后生效（键盘插件非全局模式）。
+
+---
+
+## 数据说明
+
+所有数据目前保存在浏览器 `localStorage`，不依赖后端：
+
+| 键 | 内容 |
+| --- | --- |
+| `camp-maps` | 营地地图列表：名称、位置（级联多选路径）、画布 JSON、创建/更新时间 |
+| `camp-map-preview` | 编辑页跳转预览前写入的当前画布 JSON（同源共享） |
+| 草稿键 | 「保存草稿」写入的画布 JSON 及保存时间，页面启动时会询问是否恢复 |
+
+- 画布节点上的业务数据随 JSON 一起导入导出：`node.data.room`（房间信息，见 [GraphEditor.ts](src/graph/GraphEditor.ts) 的 `RoomInfo`）、`node.data.events`（预览事件开关）。
+- [companyColors.ts](src/graph/companyColors.ts) 提供 19 条归属公司配色样例；字段结构与后端接口约定一致，可把 `getCompanyColors()` 换成接口请求，UI 无需改动。
+- [campMaps.ts](src/graph/campMaps.ts) 中的位置级联选项为示例数据（中东/非洲/亚洲），可在 `LOCATION_OPTIONS` 中替换为真实营地，或改为接口下发。
+- [example/](example/) 目录下有若干历史画布 JSON，可直接通过工具栏「导入」体验。
+
+---
+
+## 项目结构
+
+```
+src/
+├── main.ts                  # 应用入口（注册路由、Element Plus）
+├── router/index.ts          # 路由：/、/preview、/about
+├── views/
+│   ├── HomeView.vue         # 编辑页：三栏布局、工具栏、右键菜单、导入导出/草稿/地图切换
+│   └── PreviewView.vue      # 只读预览页：房间详情弹框、节点信息卡
+├── components/
+│   ├── NodePalette.vue      # 左侧节点库（拖放创建）
+│   ├── CampMapList.vue      # 左侧营地地图列表（增删改切）
+│   ├── PropertyPanel.vue    # 右侧属性面板（单选 / 批量 / 房间批量）
+│   └── ContextMenu.vue      # 动态右键菜单
+└── graph/
+    ├── GraphEditor.ts       # 全部画布逻辑封装（~3500 行）：插件、事件、组合、对齐、参考线、预览
+    ├── shapes.ts            # 自定义节点注册与节点库元数据
+    ├── companyColors.ts     # 归属公司配色数据（可替换为接口）
+    ├── campMaps.ts          # 营地地图列表的本地存储与位置选项
+    └── guides.css           # 参考线与预览 hover 高亮样式
+```
+
+### 架构说明
+
+- 画布能力全部封装在 `GraphEditor` 类中，Vue 组件只负责调用与 UI 呈现；类只回抛「能力状态」（如 `canGroup`、`canUngroup`），菜单文案等留在视图层。
+- 新增画布能力优先在类中加公开方法，组件通过 `editor.value?.xxx()` 调用。
+- 编辑态与预览态复用同一个类：预览通过 `init(true)` 关闭平移/缩放/拖拽/框选/快捷键/旋转手柄，仅保留点击查看。
+- 路径别名 `@` 指向 `src`（Vite 与 tsconfig 均已配置）。
