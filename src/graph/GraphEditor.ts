@@ -19,30 +19,13 @@ import {
   type PaletteItem,
 } from './shapes'
 import { getCompanyColorByOwnership, type CompanyColor } from './companyColors'
+import { formatRoomNoForDisplay, type RoomOption } from './campData'
 import './guides.css'
 
 /**
  * 预览态「未分配房间」置灰样式：区别于已分配房间的橙色默认外观。
  * 仅作用于编号房间（SHAPE_ROOM_NUMBER），且只在预览模式生效。
  */
-interface RoomStyleSnapshot {
-  bodyFill: string
-  bodyStroke: string
-  topbarFill: string
-  topbarStroke: string
-  labelFill: string
-  areaFill: string
-}
-
-const UNALLOCATED_ROOM_STYLE: RoomStyleSnapshot = {
-  bodyFill: '#f3f5f8',
-  bodyStroke: '#edeef3',
-  topbarFill: '#edeef3',
-  topbarStroke: '#edeef3',
-  labelFill: '#b8b6b6',
-  areaFill: '#b8b6b6',
-}
-
 // 画布支持的视图变换指令
 export type TransformCommand =
   | 'zoomIn'
@@ -435,8 +418,6 @@ export class GraphEditor {
   private groupDragging = false
   /** 最近一次 dnd 落点生成的节点 id，用于放置后自动选中 */
   private pendingDropId: string | null = null
-  /** 预览：房间节点原始样式快照（Confirm/Remove 后还原用），key = node id */
-  private roomStyleSnapshot = new Map<string, RoomStyleSnapshot>()
 
   // ---------------- 画布参考线（标尺拖出 + 吸附） ----------------
   /** 参考线列表（画布局部坐标，持久化） */
@@ -1753,6 +1734,79 @@ export class GraphEditor {
   }
 
   /**
+   * 预览弹框「选房间号绑定」：按接口房间记录把房间信息写入节点。
+   * - roomNo 存原始号（唯一性以此为准），节点显示文字写换行版
+   * - 详情字段映射与属性面板 onRoomNumberPick 保持一致
+   */
+  bindRoom(id: string, room: RoomOption): void {
+    const g = this.graph
+    if (!g) return
+    const cell = g.getCellById(id)
+    if (!cell || !cell.isNode()) return
+    const node = cell as Node
+    g.batchUpdate(() => {
+      // 两条路径都写：room-number 的 markup 文字元素是 selector:'label'（真正渲染靠 label/text），
+      // text/text 是 X6 Base 的 canonical 路径（属性面板也写它），两条都写才不会因 shape 差异漏渲染。
+      const displayText = formatRoomNoForDisplay(room.roomNumber)
+      node.attr('label/text', displayText)
+      node.attr('text/text', displayText)
+      const data = { ...(node.getData() ?? {}) } as Record<string, unknown>
+      data.room = {
+        ...this.readRoomInfo(node),
+        roomNo: room.roomNumber,
+        roomId: room.id,
+        locationId: room.locationId,
+        zoneId: room.zoneId,
+        campId: room.campId,
+        camp: room.camp,
+        zone: room.zone,
+        building: room.building,
+        allocated: true,
+        category: room.categoryName,
+        status: room.roomStatus === 1 ? 'Available' : 'Not Available',
+        ipPhoneExt: room.ipPhoneExt,
+        musterPoint: room.musterPointName ?? '',
+        rotationPattern: room.rotationType ?? '',
+        rotatorOnly: room.rotatorOnly === 1,
+        company: room.company,
+        reserveCompany: room.roomOwnershipName ?? '',
+        reserveColor: room.color ?? '',
+        remark: room.roomRemark ?? '',
+      }
+      node.setData(data)
+    })
+  }
+
+  /**
+   * 预览弹框「解除绑定」：清空房间号与详情，并把节点显示文字清成空。
+   * 与属性面板 onClearRoom 语义一致；清文字用两条 attrs 路径兜底（text / label）。
+   */
+  unbindRoom(id: string): void {
+    const g = this.graph
+    if (!g) return
+    const cell = g.getCellById(id)
+    if (!cell || !cell.isNode()) return
+    const node = cell as Node
+    g.batchUpdate(() => {
+      node.attr('text/text', '')
+      node.attr('label/text', '')
+      const data = { ...(node.getData() ?? {}) } as Record<string, unknown>
+      // 整块重置为空白房间信息：截图要求解除绑定后所有详情字段都回到占位符
+      data.room = createRoomInfo()
+      node.setData(data)
+    })
+  }
+
+  /** 按 id 读取节点房间信息（供预览弹框在绑定/解绑后回读画布最新数据） */
+  getRoomInfo(id: string): RoomInfo {
+    const g = this.graph
+    if (!g) return createRoomInfo()
+    const cell = g.getCellById(id)
+    if (!cell || !cell.isNode() || !this.isRoomNode(cell as Node)) return createRoomInfo()
+    return this.readRoomInfo(cell as Node)
+  }
+
+  /**
    * 画布上已被分配的房间号集合（roomNo 非空）。
    * 供属性面板的 roomNumber 下拉禁用「已被其它节点占用」的号。
    * @param excludeNodeId 排除指定节点（编辑自身时，自身当前占用的号仍应可选）
@@ -1792,8 +1846,9 @@ export class GraphEditor {
    * 预览已 `interacting=false`（节点不可拖拽），但 X6 的 `node:click` / `node:mouseenter`
    * 不受影响，因此交互只"看"、不会改变画布内容。
    *
-   * 交互由「事件开关」驱动，但房间节点例外（由 allocated 状态控制）：
-   * - 房间：仅 allocated（可分配）可点击弹详情、可悬停高亮；未分配强制关闭 + not-allowed。
+   * 交互由「事件开关」驱动，但房间节点例外：
+   * - 房间：一律可点击弹框、可悬停高亮；弹框样式由 allocated 决定
+   *   （未分配 → Confirm Room Allocation；已分配 → ROOM DETAILS），外观不随状态改变。
    * - 非房间：仅当对应「点击事件 / hover 事件」开关开启时才响应。
    */
   onNodeClickInPreview(cb: (payload: PreviewNodeClick) => void): void {
@@ -1802,8 +1857,6 @@ export class GraphEditor {
     g.on('node:click', ({ node }) => {
       if (this.isGroupContainer(node)) return
       if (this.isRoomNode(node)) {
-        // 房间：未分配（不可分配）强制关闭，不弹框；已分配弹详情（维持现有行为）
-        if (!this.readRoomInfo(node).allocated) return
         cb({
           id: node.id,
           shape: node.shape,
@@ -1828,10 +1881,9 @@ export class GraphEditor {
     g.on('node:mouseenter', ({ node }) => {
       if (this.isGroupContainer(node)) return
       if (this.isRoomNode(node)) {
-        // 房间：已分配 → 可交互（pointer + 高亮）；未分配 → 不可分配（not-allowed，不高亮）
-        const alloc = this.readRoomInfo(node).allocated
-        this.setRoomCursor(node, alloc ? 'pointer' : 'not-allowed')
-        if (alloc) this.setPreviewHover(node, true)
+        // 房间：一律可交互（pointer + 高亮），不因分配状态改变外观
+        this.setRoomCursor(node, 'pointer')
+        this.setPreviewHover(node, true)
         return
       }
       // 非房间：仅当「hover 事件」开关开启时，悬停高亮 + pointer
@@ -1843,10 +1895,6 @@ export class GraphEditor {
       if (this.isGroupContainer(node)) return
       this.setRoomCursor(node, 'default')
       this.setPreviewHover(node, false)
-    })
-    // 房间「分配状态」变化（Confirm/Remove）后，自动刷新其外观（置灰 ↔ 还原）
-    g.on('node:change:data', ({ node }) => {
-      if (this.isRoomNode(node)) this.refreshRoomStyle(node.id)
     })
   }
 
@@ -1968,9 +2016,10 @@ export class GraphEditor {
     if (patch.areaText !== undefined && node.shape === SHAPE_ROOM_NUMBER) {
       node.attr('area/text', patch.areaText)
     }
-    // 面积显隐：显示 → 删除 display 属性（回到默认可见）；隐藏 → display:none
+    // 面积显隐：显示 → display:''（SVG 空串即可见，避免删除属性后回退到 shape 的 display:none 默认值）；
+    // 隐藏 → display:'none'。读取端一律按 display !== 'none' 判为显示，二者一致。
     if (patch.areaVisible !== undefined && node.shape === SHAPE_ROOM_NUMBER) {
-      node.attr('area/display', patch.areaVisible ? null : 'none')
+      node.attr('area/display', patch.areaVisible ? '' : 'none')
     }
     // 面积文字字号与颜色（仅编号房间）
     if (patch.areaFontSize !== undefined && node.shape === SHAPE_ROOM_NUMBER) {
@@ -3015,76 +3064,11 @@ export class GraphEditor {
     // 否则可能沿用上次背景。与 init(preview=true) 的白色保持一致。
     g.drawBackground({ color: '#FFFFFF' })
 
-    // 预览：未分配房间(allocated=false)套用置灰样式，并把所有房间节点的原始样式
-    // 快照下来，供 Confirm/Remove 后还原；已分配房间保持 JSON 中的原始（橙色）外观。
-    if (this.preview) this.applyRoomPreviewStyles()
+    // 房间外观完全按 JSON 中的样式渲染，不随分配状态（allocated）改变：
+    // 空房与已分配房保持同一套外观，交互差异只体现在点击弹框上。
 
     // 按原始比例(100%)居中显示，不改变缩放——即使内容超出视口也不缩小（用户要求原比例）。
     g.centerContent()
-  }
-
-  /**
-   * 预览态：依房间「是否已分配」统一外观。
-   * - 未分配（allocated=false）：套用置灰样式（SHAPE_ROOM_NUMBER 的 body/topbar/label/area）。
-   * - 已分配：保持 JSON 原始样式（默认橙色），不改动。
-   * 同时把每个房间节点导入时的原始样式存进 roomStyleSnapshot，供后续刷新还原。
-   */
-  private applyRoomPreviewStyles(): void {
-    const g = this.graph
-    if (!g) return
-    g.getNodes().forEach((node) => {
-      if (!this.isRoomNode(node)) return
-      // 快照原始样式（无论分配与否，方便任意方向还原）
-      this.roomStyleSnapshot.set(node.id, {
-        bodyFill: String(node.attr('body/fill') ?? ''),
-        bodyStroke: String(node.attr('body/stroke') ?? ''),
-        topbarFill: String(node.attr('topbar/fill') ?? ''),
-        topbarStroke: String(node.attr('topbar/stroke') ?? ''),
-        labelFill: String(node.attr('label/fill') ?? ''),
-        areaFill: String(node.attr('area/fill') ?? ''),
-      })
-      if (this.readRoomInfo(node).allocated) return
-      node.attr('body/fill', UNALLOCATED_ROOM_STYLE.bodyFill)
-      node.attr('body/stroke', UNALLOCATED_ROOM_STYLE.bodyStroke)
-      node.attr('topbar/fill', UNALLOCATED_ROOM_STYLE.topbarFill)
-      node.attr('topbar/stroke', UNALLOCATED_ROOM_STYLE.topbarStroke)
-      node.attr('label/fill', UNALLOCATED_ROOM_STYLE.labelFill)
-      node.attr('area/fill', UNALLOCATED_ROOM_STYLE.areaFill)
-    })
-  }
-
-  /**
-   * 预览态：刷新单个房间节点的外观（Confirm/Remove 后调用）。
-   * 依当前 allocated 状态决定：
-   * - 已分配 → 还原为导入时的原始（橙色）样式；
-   * - 未分配 → 套用置灰样式。
-   */
-  refreshRoomStyle(id: string): void {
-    const g = this.graph
-    if (!g) return
-    const cell = g.getCellById(id)
-    if (!cell || !cell.isNode() || !this.isRoomNode(cell)) return
-    const node = cell as Node
-    const snap = this.roomStyleSnapshot.get(id)
-    if (this.readRoomInfo(node).allocated) {
-      // 已分配：还原原始样式（无快照时不动，避免破坏既有外观）
-      if (snap) {
-        node.attr('body/fill', snap.bodyFill)
-        node.attr('body/stroke', snap.bodyStroke)
-        node.attr('topbar/fill', snap.topbarFill)
-        node.attr('topbar/stroke', snap.topbarStroke)
-        node.attr('label/fill', snap.labelFill)
-        node.attr('area/fill', snap.areaFill)
-      }
-    } else {
-      // 未分配：套用置灰样式
-      node.attr('body/fill', UNALLOCATED_ROOM_STYLE.bodyFill)
-      node.attr('body/stroke', UNALLOCATED_ROOM_STYLE.bodyStroke)
-      node.attr('topbar/fill', UNALLOCATED_ROOM_STYLE.topbarFill)
-      node.attr('topbar/stroke', UNALLOCATED_ROOM_STYLE.topbarStroke)
-      node.attr('label/fill', UNALLOCATED_ROOM_STYLE.labelFill)
-      node.attr('area/fill', UNALLOCATED_ROOM_STYLE.areaFill)
-    }
   }
 
   /** 预览：内容实际尺寸（未变换坐标，即 100% 缩放下的真实宽高，单位 px） */

@@ -34,7 +34,7 @@ const emit = defineEmits<{
 const form = ref({
   label: '',
   areaText: '',
-  areaVisible: true,
+  areaVisible: false,
   areaFontSize: 10,
   areaFontFill: '#6B7C8E',
   topbarHeight: 8,

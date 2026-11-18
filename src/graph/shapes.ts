@@ -197,6 +197,9 @@ export function registerShapes(): void {
           fontSize: 10,
           fontWeight: 500,
           fill: '#6B7C8E',
+          // 面积标注默认隐藏：面板开关切到「显示」时删除该属性（回到可见），
+          // 切到「隐藏」时设回 'none'。读写判定仍按 display !== 'none'。
+          display: 'none',
         }
       }
     },

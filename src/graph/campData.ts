@@ -261,6 +261,23 @@ export function getRoomsByBuilding(locationId: number): RoomOption[] {
 }
 
 /**
+ * 全部 mock 房间号（按 roomNumber 去重，保持插入顺序）。
+ * 供预览弹框的 Room No. 下拉直接使用（不区分楼栋，展示为 "Room No.: xxx"）。
+ */
+export function getAllRoomOptions(): RoomOption[] {
+  const seen = new Set<string>()
+  const all: RoomOption[] = []
+  ROOMS.forEach((rooms) => {
+    rooms.forEach((r) => {
+      if (!r.roomNumber || seen.has(r.roomNumber)) return
+      seen.add(r.roomNumber)
+      all.push(r)
+    })
+  })
+  return all
+}
+
+/**
  * 按楼栋 id 反查三级名称：营地 / 区域 / 楼栋。
  * 找不到返回 null（兼容旧数据里已不存在的楼栋 id）。
  */

@@ -2,7 +2,8 @@
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { GraphEditor, type PreviewNodeClick } from '@/graph/GraphEditor'
+import { GraphEditor, createRoomInfo, type PreviewNodeClick, type RoomInfo } from '@/graph/GraphEditor'
+import { getAllRoomOptions, type RoomOption } from '@/graph/campData'
 
 const router = useRouter()
 const containerRef = ref<HTMLDivElement>()
@@ -79,10 +80,16 @@ onMounted(() => {
   // 以只读预览模式初始化：内置禁平移/滚轮缩放/拖拽/框选/快捷键/右键
   editor.value = new GraphEditor(containerRef.value)
   editor.value.init(true)
-  // 点击节点 → 弹出房间详情（只读，不改变画布内容）
+  // 点击节点 → 弹出房间详情
   editor.value.onNodeClickInPreview((payload) => {
-    if (payload.isRoom) active.value = payload
-    else nonRoom.value = payload
+    if (payload.isRoom) {
+      active.value = payload
+      // 弹框用本地草稿：绑定/解绑后画布数据变了，但 active 是点击时的快照不会更新
+      draftRoom.value = { ...(payload.room ?? createRoomInfo()) }
+      bindNo.value = payload.room?.roomNo || ''
+      // 其它节点已占用的房号不可再绑（排除自身）
+      assignedRoomNumbers.value = editor.value?.getAssignedRoomNumbers(payload.id) ?? new Set()
+    } else nonRoom.value = payload
   })
 
   const json = localStorage.getItem(PREVIEW_KEY)
@@ -115,17 +122,27 @@ const onKeydown = (e: KeyboardEvent) => {
 
 // ---------------- 弹框数据 ----------------
 
-const room = computed(() => active.value?.room)
+/** 弹框房间信息草稿（与画布解耦：绑定/解绑后由 bindRoom/unbindRoom 同步） */
+const draftRoom = ref<RoomInfo>(createRoomInfo())
+/** Room No. 下拉选中的原始号（不存换行版） */
+const bindNo = ref<string>('')
+/** 全部可选房间号（mock），下拉展示为 "Room No.: xxx" */
+const roomOptions: RoomOption[] = getAllRoomOptions()
+/** 画布上其它节点已占用的房号（打开弹框时刷新），用于隐藏选项 + 提交兜底校验 */
+const assignedRoomNumbers = ref<Set<string>>(new Set())
+/** 下拉只展示未被绑定的房号（已绑定的直接不显示，而非置灰禁用） */
+const availableRoomOptions = computed(() =>
+  roomOptions.filter((opt) => !assignedRoomNumbers.value.has(opt.roomNumber))
+)
+
+const room = computed(() => draftRoom.value)
 
 /** 空值统一显示占位符 */
 const dash = (v?: string) => (v && v.trim() ? v : '—')
 const yesNo = (b?: boolean) => (b ? 'Yes' : 'No')
 
-/** 是否已分配：决定弹框样式（Confirm Room Allocation / ROOM DETAILS） */
-const isAllocated = computed(() => !!room.value?.allocated)
-
-/** 房间号：未填写时回退到节点上的编号文字 */
-const roomNo = computed(() => dash(room.value?.roomNo || active.value?.label))
+/** 是否已绑定房间号：决定顶部橙色提示与底部按钮 */
+const isAllocated = computed(() => !!room.value?.roomNo?.trim())
 
 /** 位置：Camp/Zone/Building 组合 */
 const location = computed(() => {
@@ -140,58 +157,44 @@ interface DetailRow {
   value: string
   /** 占满整行 */
   full?: boolean
-  /** 高亮（房间号用橙色强调） */
-  emphasis?: boolean
 }
 
-/** ROOM INFORMATION 区 */
+/**
+ * ROOM INFORMATION 区。
+ * 注意：Room No. 不在此列——它是可交互的下拉框，在模板里单独渲染。
+ * 统一用 ROOM DETAILS 那套字段（截图里未绑定态也是这套，只是值为空）。
+ */
 const roomRows = computed<DetailRow[]>(() => {
   const r = room.value
   if (!r) return []
-  if (isAllocated.value) {
-    return [
-      { label: 'Room No.', value: roomNo.value, full: true, emphasis: true },
-      { label: 'Location', value: location.value },
-      { label: 'Category', value: dash(r.category) },
-      { label: 'Status', value: dash(r.status || 'Not Available') },
-      { label: 'IP PHONE Ext.', value: dash(r.ipPhoneExt) },
-      { label: 'Muster Point', value: dash(r.musterPoint) },
-      { label: 'Safe Locker', value: dash(r.safeLocker) },
-    ]
-  }
   return [
-    { label: 'Room No.', value: roomNo.value, full: true, emphasis: true },
-    { label: 'CAMP', value: dash(r.camp) },
-    { label: 'Zone', value: dash(r.zone) },
-    { label: 'Building', value: dash(r.building) },
+    { label: 'Location', value: location.value },
+    { label: 'Category', value: dash(r.category) },
+    { label: 'Status', value: dash(r.status || 'Not Available') },
+    { label: 'IP PHONE Ext.', value: dash(r.ipPhoneExt) },
     { label: 'Muster Point', value: dash(r.musterPoint) },
-    { label: 'Check In', value: dash(r.checkIn) },
-    { label: 'Check Out', value: dash(r.checkOut) },
-    { label: 'Rotator Only', value: yesNo(r.rotatorOnly) },
+    { label: 'Safe Locker', value: dash(r.safeLocker) },
   ]
 })
 
-/** 第二个区：PAX INFORMATION（未分配）/ RESERVED FOR（已分配） */
+/** 第二个区：RESERVED FOR（截图里两态都是这套字段） */
 const infoRows = computed<DetailRow[]>(() => {
   const r = room.value
   if (!r) return []
-  if (isAllocated.value) {
-    return [
-      { label: 'Company', value: dash(r.reserveCompany) },
-      { label: 'Color', value: dash(r.reserveColor) },
-      { label: 'For Rotator Only', value: yesNo(r.rotatorOnly) },
-      { label: 'Rotation Pattern', value: dash(r.rotationPattern) },
-      { label: 'Bind Pax', value: dash(r.bindPax), full: true },
-      { label: 'Remark', value: dash(r.remark), full: true },
-    ]
-  }
   return [
-    { label: 'Full Name', value: dash(r.fullName) },
-    { label: 'Position', value: dash(r.position) },
-    { label: 'Department', value: dash(r.department) },
-    { label: 'Company', value: dash(r.company) },
+    { label: 'Company', value: dash(r.reserveCompany) },
+    { label: 'Color', value: dash(r.reserveColor) },
+    { label: 'For Rotator Only', value: yesNo(r.rotatorOnly) },
+    { label: 'Rotation Pattern', value: dash(r.rotationPattern) },
+    { label: 'Bind Pax', value: dash(r.bindPax), full: true },
+    { label: 'Remark', value: dash(r.remark), full: true },
   ]
 })
+
+/** 下拉选中房间：只更新 bindNo，点 OK 时才真正绑定（避免误触） */
+const onBindNoChange = (v: string) => {
+  bindNo.value = v ?? ''
+}
 
 // ---------------- 弹框按钮 ----------------
 
@@ -204,34 +207,31 @@ const closeNonRoom = () => {
   nonRoom.value = null
 }
 
-/** 确认分配：本地把节点标记为已分配（再点开即变「ROOM DETAILS」视图） */
+/** 选房间号 + OK：把选中的 mock 房间绑定到节点（写显示文字 + 详情 + allocated） */
 const confirmRoom = () => {
   const cur = active.value
   if (!cur) return
-  // 分配成功后房间变为不可分配状态（与 ROOM DETAILS 视图的 Status 一致）
-  editor.value?.setRoomInfo(cur.id, {
-    allocated: true,
-    status: 'Not Available',
-  })
-  ElMessage.success(`房间 ${roomNo.value} 已确认分配`)
+  const picked: RoomOption | undefined = roomOptions.find((r) => r.roomNumber === bindNo.value)
+  if (!picked) {
+    ElMessage.warning('请先选择房间号')
+    return
+  }
+  if (assignedRoomNumbers.value.has(picked.roomNumber)) {
+    ElMessage.error(`房间号 ${picked.roomNumber} 已被其它房间绑定，不能重复绑定`)
+    return
+  }
+  editor.value?.bindRoom(cur.id, picked)
+  // 绑定成功后关闭弹框，回到画布查看最新绑定的房间号与详情
+  ElMessage.success(`已绑定房间 ${picked.roomNumber}`)
   closeDialog()
 }
 
-/** 解除绑定：清掉入住人信息，回到可分配状态 */
+/** 解除绑定：清空房间号、详情与节点显示文字，弹框留在未绑定态可重新选号 */
 const removeBinding = () => {
   const cur = active.value
   if (!cur) return
-  editor.value?.setRoomInfo(cur.id, {
-    allocated: false,
-    status: '',
-    fullName: '',
-    position: '',
-    department: '',
-    company: '',
-    checkIn: '',
-    checkOut: '',
-    bindPax: '',
-  })
+  editor.value?.unbindRoom(cur.id)
+  // 解绑成功后关闭弹框，回到画布查看（下次点开按最新数据重建未绑定态草稿）
   ElMessage.success('已解除房间绑定')
   closeDialog()
 }
@@ -274,31 +274,47 @@ const closePreview = () => {
         <div class="room-modal" role="dialog" aria-modal="true">
           <button class="room-close" type="button" aria-label="关闭" @click="closeDialog">×</button>
 
-          <h2 class="room-title">
-            {{ isAllocated ? 'ROOM DETAILS' : 'Confirm Room Allocation' }}
-          </h2>
+          <h2 class="room-title">ROOM DETAILS</h2>
 
           <section class="room-section">
             <h3 class="room-section-title">ROOM INFORMATION</h3>
+            <p v-if="!isAllocated" class="room-hint">
+              ** No room bind to this tab. Please select one room to bind.
+            </p>
             <div class="room-grid">
+              <!-- Room No.：下拉选择房间号，选项 "Room No.: xxx" -->
+              <div class="room-item is-full">
+                <span class="room-label">Room No.:</span>
+                <el-select
+                  :model-value="bindNo"
+                  class="room-select"
+                  popper-class="room-select-popper"
+                  placeholder="Select"
+                  clearable
+                  :disabled="isAllocated"
+                  @change="onBindNoChange"
+                >
+                  <el-option
+                    v-for="opt in availableRoomOptions"
+                    :key="opt.id"
+                    :value="opt.roomNumber"
+                    :label="`Room No.: ${opt.roomNumber}`"
+                  />
+                </el-select>
+              </div>
               <div
                 v-for="row in roomRows"
                 :key="row.label"
                 class="room-item"
-                :class="{ 'is-full': row.full }"
               >
-                <span class="room-label">{{ row.label }}</span>
-                <span class="room-value" :class="{ 'is-emphasis': row.emphasis }">
-                  {{ row.value }}
-                </span>
+                <span class="room-label">{{ row.label }}:</span>
+                <span class="room-value">{{ row.value }}</span>
               </div>
             </div>
           </section>
 
           <section class="room-section">
-            <h3 class="room-section-title">
-              {{ isAllocated ? 'RESERVED FOR' : 'PAX INFORMATION' }}
-            </h3>
+            <h3 class="room-section-title">RESERVED FOR</h3>
             <div class="room-grid">
               <div
                 v-for="row in infoRows"
@@ -306,24 +322,29 @@ const closePreview = () => {
                 class="room-item"
                 :class="{ 'is-full': row.full }"
               >
-                <span class="room-label">{{ row.label }}</span>
+                <span class="room-label">{{ row.label }}:</span>
                 <span class="room-value">{{ row.value }}</span>
               </div>
             </div>
           </section>
 
-          <footer class="room-footer" :class="{ 'is-center': isAllocated }">
-            <template v-if="isAllocated">
-              <button class="room-btn is-danger" type="button" @click="removeBinding">
-                Remove Binding
-              </button>
-            </template>
-            <template v-else>
-              <button class="room-btn is-ghost" type="button" @click="closeDialog">Cancel</button>
-              <button class="room-btn is-primary" type="button" @click="confirmRoom">
-                Confirm Room
-              </button>
-            </template>
+          <footer class="room-footer is-center">
+            <button
+              v-if="isAllocated"
+              class="room-btn is-danger"
+              type="button"
+              @click="removeBinding"
+            >
+              Remove Binding
+            </button>
+            <button
+              v-else
+              class="room-btn is-primary"
+              type="button"
+              @click="confirmRoom"
+            >
+              OK
+            </button>
           </footer>
         </div>
       </div>
@@ -485,6 +506,16 @@ const closePreview = () => {
   color: #33415c;
   border-bottom: 1px solid #e9eef5;
 }
+.room-hint {
+  margin: -4px 0 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #f58220;
+}
+.room-select {
+  width: 240px;
+  max-width: 100%;
+}
 .room-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -513,11 +544,6 @@ const closePreview = () => {
   color: #111827;
   word-break: break-word;
   white-space: pre-wrap;
-}
-.room-value.is-emphasis {
-  font-size: 16px;
-  font-weight: 700;
-  color: #f58220;
 }
 .room-footer {
   display: flex;
@@ -575,5 +601,12 @@ const closePreview = () => {
   .room-title {
     font-size: 22px;
   }
+}
+</style>
+
+<!-- el-select 下拉 teleport 到 body，需非 scoped 样式抬高层级，盖住 .room-mask(z-index:3000) -->
+<style>
+.room-select-popper {
+  z-index: 3100 !important;
 }
 </style>
