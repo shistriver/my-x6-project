@@ -1376,6 +1376,11 @@ export class GraphEditor {
       if (!cell) return
       cell.attr('body/stroke', on ? GraphEditor.GROUP_HL_STROKE : 'transparent')
       cell.attr('body/fill', on ? GraphEditor.GROUP_HL_FILL : 'transparent')
+      if (on) {
+        // 旧数据里可能带 rx/ry 圆角，hover 时归零让边框显示直角
+        cell.attr('body/rx', 0)
+        cell.attr('body/ry', 0)
+      }
     }
 
     apply(this.highlightedId, false)
@@ -2417,7 +2422,7 @@ export class GraphEditor {
       if (nodes.length < 2) return
 
       const bbox = g.getCellsBBox(nodes)
-      const pad = 16
+      const pad = 2
       const parent = g.addNode({
         x: bbox.x - pad,
         y: bbox.y - pad,
@@ -2432,8 +2437,8 @@ export class GraphEditor {
             stroke: 'transparent',
             strokeWidth: 2,
             strokeDasharray: '4 2',
-            rx: 6,
-            ry: 6,
+            rx: 0,
+            ry: 0,
           },
         },
       })
@@ -2570,7 +2575,7 @@ export class GraphEditor {
     })
     if (pts.length === 0) return
 
-    const pad = 16
+    const pad = 2
     // 参考点：角点集的轴对齐中心
     let minX = Infinity
     let minY = Infinity
