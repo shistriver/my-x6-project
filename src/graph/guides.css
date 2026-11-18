@@ -1,0 +1,70 @@
+/* 画布参考线 + 标尺（全局样式：DOM 由 GraphEditor 动态创建，作用域无法用 scoped 覆盖） */
+
+/* 空格平移模式：强制把所有元素（含节点/组合自身 cursor）覆盖成手型。
+   !important 必须加——节点 view 通过 inline style 设过 cursor（move/default），
+   纯类选择器优先级拼不过 inline，只有 !important 能赢。 */
+.x6-graph.space-pan,
+.x6-graph.space-pan * {
+  cursor: grab !important;
+}
+.x6-graph.space-pan-grabbing,
+.x6-graph.space-pan-grabbing * {
+  cursor: grabbing !important;
+}
+
+/* 参考线覆盖层：挂在 graph.container 内，常态不拦截鼠标 */
+.map-guide-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* 单条参考线：竖线用左边框、横线用上边框画出 1px 线，本体不拦截鼠标 */
+.map-guide {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.map-guide--v {
+  border-left: 1px solid #ff4d4f;
+}
+.map-guide--h {
+  border-top: 1px solid #ff4d4f;
+}
+/* 吸附命中高亮 */
+.map-guide.is-snapped {
+  border-color: #ff7875;
+  border-left-width: 1px;
+  border-top-width: 1px;
+}
+
+/* 参考线端点手柄：位于画布贴近标尺的角落，可拖动改位置 / 拖回标尺删除 / 双击删除 */
+.map-guide__handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4d4f;
+  border: 1px solid #fff;
+  pointer-events: auto;
+  cursor: move;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.map-guide--v .map-guide__handle {
+  left: -5px;
+  top: 6px;
+}
+.map-guide--h .map-guide__handle {
+  left: 6px;
+  top: -5px;
+}
+.map-guide.is-snapped .map-guide__handle {
+  background: #ff7875;
+}
+
+/* 预览态：节点 hover 高亮（由 setPreviewHover 给 SVG <g> 加 class，整体发光，不污染节点数据） */
+.preview-node-hover {
+  filter: drop-shadow(0 0 3px rgba(245, 130, 32, 0.9));
+}

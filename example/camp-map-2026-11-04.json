@@ -1,0 +1,178 @@
+{
+  "cells": [
+    {
+      "position": {
+        "x": -256,
+        "y": -376
+      },
+      "size": {
+        "width": 172,
+        "height": 174
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "aa8a2019-600f-4969-9e59-480631347684",
+      "zIndex": 0,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "88a3c312-274e-416d-833b-8bb776459e0f",
+        "58bc1f2c-bc8c-4978-b7a2-f3b7f48137a5",
+        "5c3f2302-e4f4-42c8-99be-42478acc246b",
+        "63550861-6c19-443b-93a2-e80220300514"
+      ]
+    },
+    {
+      "position": {
+        "x": -240,
+        "y": -360
+      },
+      "size": {
+        "width": 60,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "88a3c312-274e-416d-833b-8bb776459e0f",
+      "zIndex": 1,
+      "parent": "aa8a2019-600f-4969-9e59-480631347684"
+    },
+    {
+      "position": {
+        "x": -220,
+        "y": -90
+      },
+      "size": {
+        "width": 100,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        },
+        "body": {
+          "fill": "#ECF5FF",
+          "stroke": "#409EFF",
+          "strokeWidth": 1,
+          "rx": 4,
+          "ry": 4
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "77b33c92-b605-4476-9088-5d6441ebaf4f",
+      "zIndex": 2
+    },
+    {
+      "position": {
+        "x": -220,
+        "y": -193
+      },
+      "size": {
+        "width": 100,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        },
+        "body": {
+          "fill": "#ECF5FF",
+          "stroke": "#409EFF",
+          "strokeWidth": 1,
+          "rx": 4,
+          "ry": 4
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "43cf3cb1-ca56-43d7-981c-d905b0725483",
+      "zIndex": 3
+    },
+    {
+      "position": {
+        "x": -160,
+        "y": -360
+      },
+      "size": {
+        "width": 60,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "58bc1f2c-bc8c-4978-b7a2-f3b7f48137a5",
+      "zIndex": 4,
+      "parent": "aa8a2019-600f-4969-9e59-480631347684"
+    },
+    {
+      "position": {
+        "x": -240,
+        "y": -278
+      },
+      "size": {
+        "width": 60,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "5c3f2302-e4f4-42c8-99be-42478acc246b",
+      "zIndex": 5,
+      "parent": "aa8a2019-600f-4969-9e59-480631347684"
+    },
+    {
+      "position": {
+        "x": -160,
+        "y": -278
+      },
+      "size": {
+        "width": 60,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "63550861-6c19-443b-93a2-e80220300514",
+      "zIndex": 6,
+      "parent": "aa8a2019-600f-4969-9e59-480631347684"
+    }
+  ],
+  "guides": []
+}

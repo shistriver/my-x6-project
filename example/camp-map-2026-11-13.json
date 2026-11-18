@@ -1,0 +1,4614 @@
+{
+  "cells": [
+    {
+      "position": {
+        "x": -680,
+        "y": -560
+      },
+      "size": {
+        "width": 360,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": "GYM"
+        },
+        "body": {
+          "fill": "rgb(237, 238, 243)",
+          "stroke": "#409EFF",
+          "strokeWidth": 0,
+          "rx": 0,
+          "ry": 0
+        },
+        "label": {
+          "fill": "rgb(188, 182, 182)",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "faedd487-8e64-433c-a3d7-ef2032d61b65",
+      "zIndex": 0
+    },
+    {
+      "position": {
+        "x": -285.9,
+        "y": -558.0000000000016
+      },
+      "size": {
+        "width": 727.8999999999999,
+        "height": 60
+      },
+      "attrs": {
+        "text": {
+          "text": "GENERATORS, WORKSHOP, STORE"
+        },
+        "body": {
+          "fill": "rgb(237, 238, 243)",
+          "stroke": "#409EFF",
+          "strokeWidth": 0,
+          "rx": 0,
+          "ry": 0
+        },
+        "label": {
+          "fill": "rgb(188, 182, 182)",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "bcbba4a5-54b2-4c12-b002-003173bc16af",
+      "zIndex": 1
+    },
+    {
+      "position": {
+        "x": 407.9999999999999,
+        "y": -529
+      },
+      "size": {
+        "width": 123,
+        "height": 76
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "b3ce1a84-4ee3-4591-bfa2-ca114cae5de9",
+      "zIndex": 2,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "a76a717f-c7ea-4b7a-8a8c-7f36a97e13f2",
+        "2549089a-3839-4a2a-aa75-6ec26609dc08"
+      ]
+    },
+    {
+      "position": {
+        "x": 458.4999999999999,
+        "y": -513
+      },
+      "size": {
+        "width": 22,
+        "height": 22
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        },
+        "body": {
+          "fill": "rgb(238, 218, 0)",
+          "stroke": "rgb(220, 209, 65)",
+          "strokeWidth": 1
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "circle",
+      "id": "a76a717f-c7ea-4b7a-8a8c-7f36a97e13f2",
+      "zIndex": 3,
+      "parent": "b3ce1a84-4ee3-4591-bfa2-ca114cae5de9"
+    },
+    {
+      "position": {
+        "x": -802.0000000000132,
+        "y": -468.99999999995845
+      },
+      "size": {
+        "width": 1350,
+        "height": 520
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        },
+        "body": {
+          "fill": "rgb(240, 249, 250)",
+          "stroke": "#409EFF",
+          "strokeWidth": 0,
+          "rx": 4,
+          "ry": 4
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "10c7ecb2-5a5b-42f6-bda1-e2205fd43865",
+      "zIndex": 3
+    },
+    {
+      "position": {
+        "x": 423.9999999999999,
+        "y": -493
+      },
+      "size": {
+        "width": 91,
+        "height": 24
+      },
+      "attrs": {
+        "text": {
+          "text": "MP#BACKUP",
+          "fontWeight": 700
+        },
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "rgba(0, 0, 0, 0)"
+        },
+        "label": {
+          "fill": "#303133",
+          "fontSize": 14,
+          "fontFamily": "sans-serif",
+          "fontWeight": 700
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "2549089a-3839-4a2a-aa75-6ec26609dc08",
+      "data": {
+        "isTextNode": true
+      },
+      "zIndex": 4,
+      "parent": "b3ce1a84-4ee3-4591-bfa2-ca114cae5de9"
+    },
+    {
+      "position": {
+        "x": -203.60000000000002,
+        "y": -162.57142857142847
+      },
+      "size": {
+        "width": 76,
+        "height": 76
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "0a096f8f-7625-4cd3-adbc-3a9f7118750b",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "68ca1ce5-f7b4-4e36-a1ef-85d366b346ff",
+        "7dde80cd-1b4b-4bb7-bc68-d9a4547c7991"
+      ],
+      "zIndex": 4
+    },
+    {
+      "position": {
+        "x": -796,
+        "y": -477
+      },
+      "size": {
+        "width": 209,
+        "height": 535.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "08ede82f-da73-434b-ad64-83b3e734db41",
+      "zIndex": 5,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "78cab87b-23ad-45ad-8e03-368e8742f822",
+        "915197fb-71f0-4154-b5a1-178eb473a1b2",
+        "cb948771-67fb-46c3-a5f7-a93c7c18aa62",
+        "7169af16-c944-4d44-9975-0239cbdd211e",
+        "e563f851-311b-4966-bdd9-7059ae7c4770",
+        "3d233a08-fe55-489a-adf8-f57ffa78b535",
+        "b07912e0-8faa-448b-9f1e-055126aed789",
+        "be85286c-b0d8-4e70-891e-31453d69b8f4"
+      ]
+    },
+    {
+      "position": {
+        "x": -176.60000000000002,
+        "y": -146.57142857142847
+      },
+      "size": {
+        "width": 22,
+        "height": 22
+      },
+      "attrs": {
+        "text": {
+          "text": ""
+        },
+        "body": {
+          "fill": "rgb(238, 218, 0)",
+          "stroke": "rgb(220, 209, 65)",
+          "strokeWidth": 1
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "circle",
+      "id": "68ca1ce5-f7b4-4e36-a1ef-85d366b346ff",
+      "parent": "0a096f8f-7625-4cd3-adbc-3a9f7118750b",
+      "zIndex": 6
+    },
+    {
+      "position": {
+        "x": -602.2,
+        "y": -461
+      },
+      "size": {
+        "width": 208,
+        "height": 520.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "zIndex": 6,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "7837585a-8caf-4ddf-984f-e114b1a0327c",
+        "be617d90-d813-44ab-9a5f-afc24493f2fa",
+        "bd04c05a-45d8-41c6-a966-b3fbc49a0767",
+        "21e2db8d-f472-48ba-af6f-4e4b465ae63e",
+        "93614695-2f06-492c-9f7c-08c376f39989",
+        "633d7fd5-1cec-428b-8485-3b99ac04764a",
+        "4f6f52f0-2d01-4ce8-8c92-3988e2c90dbd",
+        "7eb842e1-8a92-4066-90ab-829c5cb57142",
+        "c93f9eaf-27f5-4c96-8c3c-2952ae2d3996",
+        "9727ee97-12cf-4a28-aa00-116ce67914dc",
+        "daaf8efb-37ae-46d2-a919-e5c032d5c290"
+      ]
+    },
+    {
+      "position": {
+        "x": -187.60000000000002,
+        "y": -126.57142857142847
+      },
+      "size": {
+        "width": 44,
+        "height": 24
+      },
+      "attrs": {
+        "text": {
+          "text": "MP#4",
+          "fontWeight": 700
+        },
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "rgba(0, 0, 0, 0)"
+        },
+        "label": {
+          "fill": "#303133",
+          "fontSize": 14,
+          "fontFamily": "sans-serif",
+          "fontWeight": 700
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "7dde80cd-1b4b-4bb7-bc68-d9a4547c7991",
+      "data": {
+        "isTextNode": true
+      },
+      "parent": "0a096f8f-7625-4cd3-adbc-3a9f7118750b",
+      "zIndex": 7
+    },
+    {
+      "position": {
+        "x": -780,
+        "y": -461
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "78cab87b-23ad-45ad-8e03-368e8742f822",
+      "zIndex": 7,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "4bd0ed85-bbcf-44c0-9dfb-4e730b746703",
+        "d9ad8b37-b610-47d3-a41e-80e03945831e",
+        "1774244b-1bd3-4f8d-9065-abfb6fe51564"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -136.60000000000002,
+        "y": -461
+      },
+      "size": {
+        "width": 208,
+        "height": 520.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "5152d5fb-896b-4a4f-bd85-445849edd781",
+      "zIndex": 7,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "18f398ec-734b-48b1-9546-5aa661edcfcb",
+        "69a91f59-c41c-40d8-8e4e-701897a5448e",
+        "e5ec0c76-b7b6-44de-8997-65c2df991d05",
+        "53b17526-9fbc-4baf-aa75-2a643e3cc34f",
+        "5e78d2a5-a9bc-4ba9-94ab-75a28fd72869",
+        "8d665cdf-e1e6-4941-929e-451d45ed9328",
+        "463d8725-14b3-422a-8ffb-0e689f8bb1b8",
+        "ead16c31-1d0d-40ad-9e48-14bb375da5c0",
+        "ee1b046d-ad7d-43cd-802b-f2a194ba124e",
+        "1820d50b-948e-40f5-80ed-5798898d3e50",
+        "d3bc6c92-9a50-4f2a-85b2-791f34a24936",
+        "ff708c25-08d8-44f2-883c-616565f9753d"
+      ]
+    },
+    {
+      "position": {
+        "x": -764,
+        "y": -445
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "4bd0ed85-bbcf-44c0-9dfb-4e730b746703",
+      "zIndex": 8,
+      "parent": "78cab87b-23ad-45ad-8e03-368e8742f822",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": 56.19999999999999,
+        "y": -461
+      },
+      "size": {
+        "width": 208,
+        "height": 520.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "3f005609-ef0d-46c1-8dd0-f5b850c10113",
+      "zIndex": 8,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "cf162965-1a54-487f-9838-c820da1b39a1",
+        "756a6d12-5b33-43ac-b49c-6a64c7a1a59d",
+        "c6f07617-855b-4bc8-a0c8-12c963b5cd8e",
+        "c42e36ef-b199-4012-bfe4-9d9adac63a66",
+        "0fa5e3ab-2e70-4ef4-9e98-7387c770e6ff",
+        "466ef7fa-c704-4874-a1e5-15cc7286743a",
+        "da70fd21-2823-4a84-8b00-630c86d65d62",
+        "34f18bd1-34a2-45ee-bc8f-fde613ecf1b0",
+        "e469f483-e774-484d-92b1-c9ad0d636599",
+        "c54380e3-60ee-4edf-9d18-d271696c9a07",
+        "7b6bcc93-158e-458e-995e-41bffb976d30",
+        "0cf5763d-d5b7-46ff-9a97-d2868612935e"
+      ]
+    },
+    {
+      "position": {
+        "x": -712,
+        "y": -445
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#239fdd"
+        },
+        "topbar": {
+          "fill": "#239fdd",
+          "stroke": "#239fdd"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "d9ad8b37-b610-47d3-a41e-80e03945831e",
+      "zIndex": 9,
+      "parent": "78cab87b-23ad-45ad-8e03-368e8742f822",
+      "data": {
+        "roomOwnership": 10
+      }
+    },
+    {
+      "position": {
+        "x": 249,
+        "y": -461
+      },
+      "size": {
+        "width": 208,
+        "height": 520.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "8c72e10b-a2b9-4614-ad39-0acf2ad29274",
+      "zIndex": 9,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "f41e8eaf-e8bf-46eb-9b99-d1032c734cd9",
+        "a61ae9c8-569c-4716-b3a2-1097b8152253",
+        "c0b9c608-6a4a-4c0e-a7c2-39052509631f",
+        "ba4557d8-90fe-4b1e-88ef-58f9a75b718c",
+        "b73c7725-f9c5-4e0e-88e7-66a74aa6f7fe",
+        "a8983a40-980e-4495-ad58-0352f0e7f508",
+        "74eb817a-bb87-4feb-92e3-b958da278075",
+        "7d8807df-dd73-416d-9de2-0191d0d913bc",
+        "28a728dd-599f-4ab4-b795-aad3c73d4eba",
+        "c4617cc1-94fc-4f34-b54c-48f91ad22c46",
+        "e18697cb-68a5-41d7-bf43-4d77621a8925",
+        "fabf0302-777c-419e-9a34-d2e0a89abc09"
+      ]
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -445
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "1774244b-1bd3-4f8d-9065-abfb6fe51564",
+      "zIndex": 10,
+      "parent": "78cab87b-23ad-45ad-8e03-368e8742f822",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -780,
+        "y": -399.1428571428571
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "915197fb-71f0-4154-b5a1-178eb473a1b2",
+      "zIndex": 10,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "113f9834-ef0b-4d3f-beaa-b221d98d1ea0",
+        "83d08c50-4d4b-414c-bf52-5da5cd5c4487",
+        "b4a5c780-8958-41bc-8d13-5a4af3f91819"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": 444.5,
+        "y": -246
+      },
+      "size": {
+        "width": 71,
+        "height": 42
+      },
+      "attrs": {
+        "text": {
+          "text": "Building\n7",
+          "fontWeight": 700
+        },
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "rgba(0, 0, 0, 0)"
+        },
+        "label": {
+          "fill": "rgb(167, 177, 194)",
+          "fontSize": 16,
+          "fontFamily": "sans-serif",
+          "fontWeight": 700
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "35763932-fb7c-441a-86ce-117cdb11f785",
+      "data": {
+        "isTextNode": true
+      },
+      "zIndex": 10
+    },
+    {
+      "position": {
+        "x": -764,
+        "y": -383.1428571428571
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "113f9834-ef0b-4d3f-beaa-b221d98d1ea0",
+      "zIndex": 11,
+      "parent": "915197fb-71f0-4154-b5a1-178eb473a1b2",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -215.60000000000002,
+        "y": -407
+      },
+      "size": {
+        "width": 100,
+        "height": 193
+      },
+      "attrs": {
+        "text": {
+          "text": "S\nE\nR\nV\nE\nR\n\nR\nM"
+        },
+        "body": {
+          "fill": "rgb(243, 245, 248)",
+          "stroke": "rgb(237, 238, 243)",
+          "strokeWidth": 1,
+          "rx": 4,
+          "ry": 4
+        },
+        "label": {
+          "fill": "#1F2329",
+          "fontSize": 14
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "0eeb2512-6a46-4b95-82a0-23023a104125",
+      "zIndex": 11
+    },
+    {
+      "position": {
+        "x": -712,
+        "y": -383.1428571428571
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "83d08c50-4d4b-414c-bf52-5da5cd5c4487",
+      "zIndex": 12,
+      "parent": "915197fb-71f0-4154-b5a1-178eb473a1b2",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -409.40000000000003,
+        "y": -461
+      },
+      "size": {
+        "width": 208,
+        "height": 520.0000000000001
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "zIndex": 12,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "e1fefc79-8c78-4b8a-be55-c6cf2528f084",
+        "c4ea8589-e44c-4a70-979d-cc421c839693",
+        "a68a40ea-e36c-425d-9f5d-81d20634c6c3",
+        "0672f652-bbdb-4cf1-a600-a8f1be562bf1",
+        "bf7db9fc-7392-491e-888f-ecdc0a688253",
+        "afec8e15-fa0e-48f4-8ecf-58bf625018d0",
+        "f457066f-f93c-41b7-8926-40be5e1b73f6",
+        "e41010bb-8d36-4738-a425-f8261ac0a126",
+        "90e7ec10-b163-4fe0-a4a9-bdf183603a92",
+        "b827928f-c04d-4ab9-a247-d1593090f1d9",
+        "f9d6a3c6-07d4-4093-913f-81281d80a866",
+        "cc9deb1d-a6fa-449d-b5e7-aa637bbc500d"
+      ]
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -383.1428571428571
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "b4a5c780-8958-41bc-8d13-5a4af3f91819",
+      "zIndex": 13,
+      "parent": "915197fb-71f0-4154-b5a1-178eb473a1b2",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -780,
+        "y": -337.2857142857142
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "cb948771-67fb-46c3-a5f7-a93c7c18aa62",
+      "zIndex": 13,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "2225a87b-f0b2-4478-aea0-3d63eaf8f646",
+        "c518d3a3-6474-4a30-a0d1-0979bfd6d11a",
+        "861c2e8d-55d1-4fac-97c3-ee1842c5d225"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -764,
+        "y": -321.2857142857142
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "2225a87b-f0b2-4478-aea0-3d63eaf8f646",
+      "zIndex": 14,
+      "parent": "cb948771-67fb-46c3-a5f7-a93c7c18aa62",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -712,
+        "y": -321.2857142857142
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c518d3a3-6474-4a30-a0d1-0979bfd6d11a",
+      "zIndex": 15,
+      "parent": "cb948771-67fb-46c3-a5f7-a93c7c18aa62",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -321.2857142857142
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "861c2e8d-55d1-4fac-97c3-ee1842c5d225",
+      "zIndex": 16,
+      "parent": "cb948771-67fb-46c3-a5f7-a93c7c18aa62",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -779,
+        "y": -275.42857142857133
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "7169af16-c944-4d44-9975-0239cbdd211e",
+      "zIndex": 16,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "200a4030-ead0-42ee-9e16-988b72fcee58",
+        "69a8aa1b-1791-4ac5-a202-99630a395e8f",
+        "fad6e858-7c28-4ac6-a6ca-4ea3a79b66e1"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -763,
+        "y": -259.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "200a4030-ead0-42ee-9e16-988b72fcee58",
+      "zIndex": 17,
+      "parent": "7169af16-c944-4d44-9975-0239cbdd211e",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -711,
+        "y": -259.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "69a8aa1b-1791-4ac5-a202-99630a395e8f",
+      "zIndex": 18,
+      "parent": "7169af16-c944-4d44-9975-0239cbdd211e",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -659,
+        "y": -259.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "fad6e858-7c28-4ac6-a6ca-4ea3a79b66e1",
+      "zIndex": 19,
+      "parent": "7169af16-c944-4d44-9975-0239cbdd211e",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -779,
+        "y": -213.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "e563f851-311b-4966-bdd9-7059ae7c4770",
+      "zIndex": 19,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "42b63350-87d3-41ca-8392-bbaf1ab08701",
+        "deb4e864-ebe1-45b8-8a1f-bbe7e619e8c9",
+        "061500f4-5a6e-4a08-8ffb-518bac713497"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -763,
+        "y": -197.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#cfdf81"
+        },
+        "topbar": {
+          "fill": "#cfdf81",
+          "stroke": "#cfdf81"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "42b63350-87d3-41ca-8392-bbaf1ab08701",
+      "zIndex": 20,
+      "parent": "e563f851-311b-4966-bdd9-7059ae7c4770",
+      "data": {
+        "roomOwnership": 18
+      }
+    },
+    {
+      "position": {
+        "x": -711.5,
+        "y": -197.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#cfdf81"
+        },
+        "topbar": {
+          "fill": "#cfdf81",
+          "stroke": "#cfdf81"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "deb4e864-ebe1-45b8-8a1f-bbe7e619e8c9",
+      "zIndex": 21,
+      "parent": "e563f851-311b-4966-bdd9-7059ae7c4770",
+      "data": {
+        "roomOwnership": 18
+      }
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -197.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#239fdd"
+        },
+        "topbar": {
+          "fill": "#239fdd",
+          "stroke": "#239fdd"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "061500f4-5a6e-4a08-8ffb-518bac713497",
+      "zIndex": 22,
+      "parent": "e563f851-311b-4966-bdd9-7059ae7c4770",
+      "data": {
+        "roomOwnership": 10
+      }
+    },
+    {
+      "position": {
+        "x": -780,
+        "y": -151.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "3d233a08-fe55-489a-adf8-f57ffa78b535",
+      "zIndex": 22,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "6b9c71dc-48f3-46d0-ada5-4b2892331a9b",
+        "3e558686-c652-410f-8faa-f824cb39de16",
+        "b879af56-b9f3-4296-9337-71647048c515"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -764,
+        "y": -135.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#cfdf81"
+        },
+        "topbar": {
+          "fill": "#cfdf81",
+          "stroke": "#cfdf81"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "6b9c71dc-48f3-46d0-ada5-4b2892331a9b",
+      "zIndex": 23,
+      "parent": "3d233a08-fe55-489a-adf8-f57ffa78b535",
+      "data": {
+        "roomOwnership": 18
+      }
+    },
+    {
+      "position": {
+        "x": -712,
+        "y": -135.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#cfdf81"
+        },
+        "topbar": {
+          "fill": "#cfdf81",
+          "stroke": "#cfdf81"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "3e558686-c652-410f-8faa-f824cb39de16",
+      "zIndex": 24,
+      "parent": "3d233a08-fe55-489a-adf8-f57ffa78b535",
+      "data": {
+        "roomOwnership": 18
+      }
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -135.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "b879af56-b9f3-4296-9337-71647048c515",
+      "zIndex": 25,
+      "parent": "3d233a08-fe55-489a-adf8-f57ffa78b535",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -779,
+        "y": -89.85714285714275
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "b07912e0-8faa-448b-9f1e-055126aed789",
+      "zIndex": 25,
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "5f234b18-49a5-46cb-8ec8-406183665ab2",
+        "0db83d6d-2696-4273-9446-4c232c17e0e6",
+        "f537fa9d-5c40-49f4-a242-13c3de41ebb2"
+      ],
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -763,
+        "y": -73.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "5f234b18-49a5-46cb-8ec8-406183665ab2",
+      "zIndex": 26,
+      "parent": "b07912e0-8faa-448b-9f1e-055126aed789"
+    },
+    {
+      "position": {
+        "x": -711.5,
+        "y": -73.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "0db83d6d-2696-4273-9446-4c232c17e0e6",
+      "zIndex": 27,
+      "parent": "b07912e0-8faa-448b-9f1e-055126aed789"
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -73.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f537fa9d-5c40-49f4-a242-13c3de41ebb2",
+      "zIndex": 28,
+      "parent": "b07912e0-8faa-448b-9f1e-055126aed789"
+    },
+    {
+      "position": {
+        "x": -779,
+        "y": -27.999999999999883
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "be85286c-b0d8-4e70-891e-31453d69b8f4",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "931d5082-1823-4123-b416-e108c21ea57f",
+        "8a7dee0a-abff-4910-b43b-e0fe64f0bb05",
+        "b6eda3e0-5f52-488d-8eed-faf5ad3d629c"
+      ],
+      "zIndex": 29,
+      "parent": "08ede82f-da73-434b-ad64-83b3e734db41"
+    },
+    {
+      "position": {
+        "x": -763,
+        "y": -11.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "931d5082-1823-4123-b416-e108c21ea57f",
+      "parent": "be85286c-b0d8-4e70-891e-31453d69b8f4",
+      "zIndex": 30
+    },
+    {
+      "position": {
+        "x": -711.5,
+        "y": -11.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8a7dee0a-abff-4910-b43b-e0fe64f0bb05",
+      "parent": "be85286c-b0d8-4e70-891e-31453d69b8f4",
+      "zIndex": 31
+    },
+    {
+      "position": {
+        "x": -660,
+        "y": -11.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "b6eda3e0-5f52-488d-8eed-faf5ad3d629c",
+      "parent": "be85286c-b0d8-4e70-891e-31453d69b8f4",
+      "zIndex": 32,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -586.2,
+        "y": -274.42857142857133
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "4f6f52f0-2d01-4ce8-8c92-3988e2c90dbd",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "32b064b2-d9f4-48bc-b613-d10688ab49f9",
+        "726ae582-9f51-43c3-b4e8-5f6b517b4e56",
+        "8e61e6c8-ab2f-45f1-bd6e-45d00afde436"
+      ],
+      "zIndex": 33,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927"
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -258.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "32b064b2-d9f4-48bc-b613-d10688ab49f9",
+      "parent": "4f6f52f0-2d01-4ce8-8c92-3988e2c90dbd",
+      "zIndex": 34,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -518.2,
+        "y": -258.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "726ae582-9f51-43c3-b4e8-5f6b517b4e56",
+      "parent": "4f6f52f0-2d01-4ce8-8c92-3988e2c90dbd",
+      "zIndex": 35,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -466.20000000000005,
+        "y": -258.42857142857133
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8e61e6c8-ab2f-45f1-bd6e-45d00afde436",
+      "parent": "4f6f52f0-2d01-4ce8-8c92-3988e2c90dbd",
+      "zIndex": 36,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -586.2,
+        "y": -212.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "7eb842e1-8a92-4066-90ab-829c5cb57142",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "6f3d1fe8-e92a-4a7d-9edc-f15daa78ebc5",
+        "c729af8c-b7c7-4baf-9248-e99fb3e43575",
+        "c757e91f-a192-4e98-9f7f-6ae47d16e4a5"
+      ],
+      "zIndex": 37,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927"
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "6f3d1fe8-e92a-4a7d-9edc-f15daa78ebc5",
+      "parent": "7eb842e1-8a92-4066-90ab-829c5cb57142",
+      "zIndex": 38,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -518.7,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ed7d31"
+        },
+        "topbar": {
+          "fill": "#ed7d31",
+          "stroke": "#ed7d31"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c729af8c-b7c7-4baf-9248-e99fb3e43575",
+      "parent": "7eb842e1-8a92-4066-90ab-829c5cb57142",
+      "zIndex": 39,
+      "data": {
+        "roomOwnership": 1
+      }
+    },
+    {
+      "position": {
+        "x": -467.20000000000005,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c757e91f-a192-4e98-9f7f-6ae47d16e4a5",
+      "parent": "7eb842e1-8a92-4066-90ab-829c5cb57142",
+      "zIndex": 40
+    },
+    {
+      "position": {
+        "x": -586.2,
+        "y": -150.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "c93f9eaf-27f5-4c96-8c3c-2952ae2d3996",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "d6ddf83e-7383-4c81-926a-ce6d57e95f09",
+        "f35645e8-cbad-44e7-9ce5-99b3e9b12c50",
+        "682c75d9-9a16-4034-bf79-f0cd77dd758b"
+      ],
+      "zIndex": 41,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927"
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "d6ddf83e-7383-4c81-926a-ce6d57e95f09",
+      "parent": "c93f9eaf-27f5-4c96-8c3c-2952ae2d3996",
+      "zIndex": 42,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -518.2,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f35645e8-cbad-44e7-9ce5-99b3e9b12c50",
+      "parent": "c93f9eaf-27f5-4c96-8c3c-2952ae2d3996",
+      "zIndex": 43
+    },
+    {
+      "position": {
+        "x": -466.20000000000005,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "682c75d9-9a16-4034-bf79-f0cd77dd758b",
+      "parent": "c93f9eaf-27f5-4c96-8c3c-2952ae2d3996",
+      "zIndex": 44
+    },
+    {
+      "position": {
+        "x": -586.2,
+        "y": -88.85714285714275
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "9727ee97-12cf-4a28-aa00-116ce67914dc",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "97567a5b-4bba-49b5-9643-26d6e57fe05d",
+        "0171e5df-2e1c-407e-bc67-5f573bf04d04",
+        "3877c2f7-4ac9-4afd-a78a-aed6825924fb"
+      ],
+      "zIndex": 45,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927"
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "97567a5b-4bba-49b5-9643-26d6e57fe05d",
+      "parent": "9727ee97-12cf-4a28-aa00-116ce67914dc",
+      "zIndex": 46
+    },
+    {
+      "position": {
+        "x": -518.2,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "0171e5df-2e1c-407e-bc67-5f573bf04d04",
+      "parent": "9727ee97-12cf-4a28-aa00-116ce67914dc",
+      "zIndex": 47
+    },
+    {
+      "position": {
+        "x": -466.20000000000005,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "3877c2f7-4ac9-4afd-a78a-aed6825924fb",
+      "parent": "9727ee97-12cf-4a28-aa00-116ce67914dc",
+      "zIndex": 48,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -586.2,
+        "y": -26.999999999999883
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "daaf8efb-37ae-46d2-a919-e5c032d5c290",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "417c9cd2-02e9-4b55-9416-99dc2e34151b",
+        "8d935a9c-0a47-45f3-89b4-dd104c0af8c6",
+        "c48d221e-2f3e-4c59-bf5a-47a9b58bd88c"
+      ],
+      "zIndex": 49,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927"
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#7030a0"
+        },
+        "topbar": {
+          "fill": "#7030a0",
+          "stroke": "#7030a0"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "417c9cd2-02e9-4b55-9416-99dc2e34151b",
+      "parent": "daaf8efb-37ae-46d2-a919-e5c032d5c290",
+      "zIndex": 50,
+      "data": {
+        "roomOwnership": 9
+      }
+    },
+    {
+      "position": {
+        "x": -518.2,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#7030a0"
+        },
+        "topbar": {
+          "fill": "#7030a0",
+          "stroke": "#7030a0"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8d935a9c-0a47-45f3-89b4-dd104c0af8c6",
+      "parent": "daaf8efb-37ae-46d2-a919-e5c032d5c290",
+      "zIndex": 51,
+      "data": {
+        "roomOwnership": 9
+      }
+    },
+    {
+      "position": {
+        "x": -466.20000000000005,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c48d221e-2f3e-4c59-bf5a-47a9b58bd88c",
+      "parent": "daaf8efb-37ae-46d2-a919-e5c032d5c290",
+      "zIndex": 52,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -444
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7837585a-8caf-4ddf-984f-e114b1a0327c",
+      "zIndex": 54,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -486.20000000000005,
+        "y": -445
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "be617d90-d813-44ab-9a5f-afc24493f2fa",
+      "zIndex": 55,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -383
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "21e2db8d-f472-48ba-af6f-4e4b465ae63e",
+      "zIndex": 56,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -486.20000000000005,
+        "y": -384
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "bd04c05a-45d8-41c6-a966-b3fbc49a0767",
+      "zIndex": 57,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -570.2,
+        "y": -322
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "93614695-2f06-492c-9f7c-08c376f39989",
+      "zIndex": 58,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -486.20000000000005,
+        "y": -323
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "633d7fd5-1cec-428b-8485-3b99ac04764a",
+      "zIndex": 59,
+      "parent": "2328a7c5-79f9-436d-ae90-388d3edc7927",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -444
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "e1fefc79-8c78-4b8a-be55-c6cf2528f084",
+      "zIndex": 60,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -293.40000000000003,
+        "y": -445
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c4ea8589-e44c-4a70-979d-cc421c839693",
+      "zIndex": 61,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -293.40000000000003,
+        "y": -384
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "a68a40ea-e36c-425d-9f5d-81d20634c6c3",
+      "zIndex": 62,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -383
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "0672f652-bbdb-4cf1-a600-a8f1be562bf1",
+      "zIndex": 63,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -322
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "bf7db9fc-7392-491e-888f-ecdc0a688253",
+      "zIndex": 64,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -293.40000000000003,
+        "y": -323
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "afec8e15-fa0e-48f4-8ecf-58bf625018d0",
+      "zIndex": 65,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -393.40000000000003,
+        "y": -212.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "90e7ec10-b163-4fe0-a4a9-bdf183603a92",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "f5814f79-32f9-4f03-b0e9-332943188a3c",
+        "8c4ea29c-0f9c-4969-8f2f-7077beaa6f38",
+        "82f7b926-d40b-4683-ae5d-dfb3dba055cd"
+      ],
+      "zIndex": 70,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48"
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f5814f79-32f9-4f03-b0e9-332943188a3c",
+      "parent": "90e7ec10-b163-4fe0-a4a9-bdf183603a92",
+      "zIndex": 71,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -325.90000000000003,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8c4ea29c-0f9c-4969-8f2f-7077beaa6f38",
+      "parent": "90e7ec10-b163-4fe0-a4a9-bdf183603a92",
+      "zIndex": 72,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -274.40000000000003,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "82f7b926-d40b-4683-ae5d-dfb3dba055cd",
+      "parent": "90e7ec10-b163-4fe0-a4a9-bdf183603a92",
+      "zIndex": 73,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -393.40000000000003,
+        "y": -150.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "b827928f-c04d-4ab9-a247-d1593090f1d9",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "53629f94-78ee-4c75-aae8-a3c784630fe6",
+        "2444cb24-ca28-440a-a1a1-fa31053c359f",
+        "5594aca5-4475-4f72-a4d8-f2dbbc491588"
+      ],
+      "zIndex": 74,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48"
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "53629f94-78ee-4c75-aae8-a3c784630fe6",
+      "parent": "b827928f-c04d-4ab9-a247-d1593090f1d9",
+      "zIndex": 75,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -325.40000000000003,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "2444cb24-ca28-440a-a1a1-fa31053c359f",
+      "parent": "b827928f-c04d-4ab9-a247-d1593090f1d9",
+      "zIndex": 76,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -273.40000000000003,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "5594aca5-4475-4f72-a4d8-f2dbbc491588",
+      "parent": "b827928f-c04d-4ab9-a247-d1593090f1d9",
+      "zIndex": 77,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -393.40000000000003,
+        "y": -88.85714285714275
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "f9d6a3c6-07d4-4093-913f-81281d80a866",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "21fa115e-92d2-4874-9249-473f96ea0c1a",
+        "b595cd04-420f-4cec-ab78-4185aed198b6",
+        "bb683f0d-d62b-49ec-aaba-b0d529b18c44"
+      ],
+      "zIndex": 78,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48"
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "21fa115e-92d2-4874-9249-473f96ea0c1a",
+      "parent": "f9d6a3c6-07d4-4093-913f-81281d80a866",
+      "zIndex": 79,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -325.40000000000003,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "b595cd04-420f-4cec-ab78-4185aed198b6",
+      "parent": "f9d6a3c6-07d4-4093-913f-81281d80a866",
+      "zIndex": 80,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -273.40000000000003,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "bb683f0d-d62b-49ec-aaba-b0d529b18c44",
+      "parent": "f9d6a3c6-07d4-4093-913f-81281d80a866",
+      "zIndex": 81,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -393.40000000000003,
+        "y": -26.999999999999883
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "cc9deb1d-a6fa-449d-b5e7-aa637bbc500d",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "21b0884a-76ef-4b3b-8fd2-47e6359e8ab0",
+        "409b754f-2282-4333-a4af-279048040037",
+        "02727bbb-d862-4fd8-8efd-4a1064bf04b7"
+      ],
+      "zIndex": 82,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48"
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "21b0884a-76ef-4b3b-8fd2-47e6359e8ab0",
+      "parent": "cc9deb1d-a6fa-449d-b5e7-aa637bbc500d",
+      "zIndex": 83,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -325.40000000000003,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "409b754f-2282-4333-a4af-279048040037",
+      "parent": "cc9deb1d-a6fa-449d-b5e7-aa637bbc500d",
+      "zIndex": 84,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -273.40000000000003,
+        "y": -10.999999999999883
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#e7c871"
+        },
+        "topbar": {
+          "fill": "#e7c871",
+          "stroke": "#e7c871"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "02727bbb-d862-4fd8-8efd-4a1064bf04b7",
+      "parent": "cc9deb1d-a6fa-449d-b5e7-aa637bbc500d",
+      "zIndex": 85,
+      "data": {
+        "roomOwnership": 4
+      }
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -444
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#808080"
+        },
+        "topbar": {
+          "fill": "#808080",
+          "stroke": "#808080"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "18f398ec-734b-48b1-9546-5aa661edcfcb",
+      "zIndex": 86,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781",
+      "data": {
+        "roomOwnership": 6
+      }
+    },
+    {
+      "position": {
+        "x": -20.600000000000023,
+        "y": -445
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#808080"
+        },
+        "topbar": {
+          "fill": "#808080",
+          "stroke": "#808080"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "69a91f59-c41c-40d8-8e4e-701897a5448e",
+      "zIndex": 87,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781",
+      "data": {
+        "roomOwnership": 6
+      }
+    },
+    {
+      "position": {
+        "x": -20.600000000000023,
+        "y": -384
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "e5ec0c76-b7b6-44de-8997-65c2df991d05",
+      "zIndex": 88,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -383
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "53b17526-9fbc-4baf-aa75-2a643e3cc34f",
+      "zIndex": 89,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -322
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "5e78d2a5-a9bc-4ba9-94ab-75a28fd72869",
+      "zIndex": 90,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -20.600000000000023,
+        "y": -323
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8d665cdf-e1e6-4941-929e-451d45ed9328",
+      "zIndex": 91,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -120.60000000000002,
+        "y": -212.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "ee1b046d-ad7d-43cd-802b-f2a194ba124e",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "eafad054-311c-415e-9ac7-e55add2e4edc",
+        "6e50086d-f04f-499e-a7d0-9d010aa32189",
+        "749c13cc-4477-4b62-a1f6-e040170bfa7c"
+      ],
+      "zIndex": 96,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "eafad054-311c-415e-9ac7-e55add2e4edc",
+      "parent": "ee1b046d-ad7d-43cd-802b-f2a194ba124e",
+      "zIndex": 97
+    },
+    {
+      "position": {
+        "x": -53.10000000000002,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "6e50086d-f04f-499e-a7d0-9d010aa32189",
+      "parent": "ee1b046d-ad7d-43cd-802b-f2a194ba124e",
+      "zIndex": 98
+    },
+    {
+      "position": {
+        "x": -1.6000000000000227,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "749c13cc-4477-4b62-a1f6-e040170bfa7c",
+      "parent": "ee1b046d-ad7d-43cd-802b-f2a194ba124e",
+      "zIndex": 99
+    },
+    {
+      "position": {
+        "x": -120.60000000000002,
+        "y": -150.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "1820d50b-948e-40f5-80ed-5798898d3e50",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "2f44c067-58d3-46cc-8329-00a8383e5662",
+        "5e345c41-46ac-4f33-8b51-e4243c3c8ddd",
+        "a9b8d016-8d37-4d64-beb0-ea6e5d1085ac"
+      ],
+      "zIndex": 100,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "2f44c067-58d3-46cc-8329-00a8383e5662",
+      "parent": "1820d50b-948e-40f5-80ed-5798898d3e50",
+      "zIndex": 101
+    },
+    {
+      "position": {
+        "x": -52.60000000000002,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "5e345c41-46ac-4f33-8b51-e4243c3c8ddd",
+      "parent": "1820d50b-948e-40f5-80ed-5798898d3e50",
+      "zIndex": 102
+    },
+    {
+      "position": {
+        "x": -0.6000000000000227,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "a9b8d016-8d37-4d64-beb0-ea6e5d1085ac",
+      "parent": "1820d50b-948e-40f5-80ed-5798898d3e50",
+      "zIndex": 103
+    },
+    {
+      "position": {
+        "x": -120.60000000000002,
+        "y": -88.85714285714275
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "d3bc6c92-9a50-4f2a-85b2-791f34a24936",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "27b435bc-2a9e-4527-be27-8657fccf1d50",
+        "06f9c0f5-e878-469f-9297-ff7c603662ab",
+        "d37c7558-f84d-4678-8af1-3a55b38b7cba"
+      ],
+      "zIndex": 104,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "27b435bc-2a9e-4527-be27-8657fccf1d50",
+      "parent": "d3bc6c92-9a50-4f2a-85b2-791f34a24936",
+      "zIndex": 105
+    },
+    {
+      "position": {
+        "x": -52.60000000000002,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "06f9c0f5-e878-469f-9297-ff7c603662ab",
+      "parent": "d3bc6c92-9a50-4f2a-85b2-791f34a24936",
+      "zIndex": 106
+    },
+    {
+      "position": {
+        "x": -0.6000000000000227,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "d37c7558-f84d-4678-8af1-3a55b38b7cba",
+      "parent": "d3bc6c92-9a50-4f2a-85b2-791f34a24936",
+      "zIndex": 107
+    },
+    {
+      "position": {
+        "x": -120.60000000000002,
+        "y": -26.999999999999886
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "ff708c25-08d8-44f2-883c-616565f9753d",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "c1908de7-8e7e-4d4d-8199-d6745d3a01b0",
+        "3a49270c-da10-4b88-9be2-4c2dedaa9a71",
+        "7605b390-66fa-44c0-aa6a-bf8229cce876"
+      ],
+      "zIndex": 108,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c1908de7-8e7e-4d4d-8199-d6745d3a01b0",
+      "parent": "ff708c25-08d8-44f2-883c-616565f9753d",
+      "zIndex": 109
+    },
+    {
+      "position": {
+        "x": -52.60000000000002,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "3a49270c-da10-4b88-9be2-4c2dedaa9a71",
+      "parent": "ff708c25-08d8-44f2-883c-616565f9753d",
+      "zIndex": 110
+    },
+    {
+      "position": {
+        "x": -0.6000000000000227,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7605b390-66fa-44c0-aa6a-bf8229cce876",
+      "parent": "ff708c25-08d8-44f2-883c-616565f9753d",
+      "zIndex": 111
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -444
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "cf162965-1a54-487f-9838-c820da1b39a1",
+      "zIndex": 112,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 172.2,
+        "y": -445
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "756a6d12-5b33-43ac-b49c-6a64c7a1a59d",
+      "zIndex": 113,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 172.2,
+        "y": -384
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c42e36ef-b199-4012-bfe4-9d9adac63a66",
+      "zIndex": 114,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -383
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c6f07617-855b-4bc8-a0c8-12c963b5cd8e",
+      "zIndex": 115,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -322
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "0fa5e3ab-2e70-4ef4-9e98-7387c770e6ff",
+      "zIndex": 116,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 172.2,
+        "y": -323
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "466ef7fa-c704-4874-a1e5-15cc7286743a",
+      "zIndex": 117,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 72.19999999999999,
+        "y": -212.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "e469f483-e774-484d-92b1-c9ad0d636599",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "45a22286-20a8-42ec-a981-3edbeaef865e",
+        "7eb31e00-fd57-456a-af92-306db94b1f6a",
+        "7e02bbd7-ee95-462e-b41e-a8ffcf678c5c"
+      ],
+      "zIndex": 122,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "45a22286-20a8-42ec-a981-3edbeaef865e",
+      "parent": "e469f483-e774-484d-92b1-c9ad0d636599",
+      "zIndex": 123
+    },
+    {
+      "position": {
+        "x": 139.7,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7eb31e00-fd57-456a-af92-306db94b1f6a",
+      "parent": "e469f483-e774-484d-92b1-c9ad0d636599",
+      "zIndex": 124
+    },
+    {
+      "position": {
+        "x": 191.2,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7e02bbd7-ee95-462e-b41e-a8ffcf678c5c",
+      "parent": "e469f483-e774-484d-92b1-c9ad0d636599",
+      "zIndex": 125
+    },
+    {
+      "position": {
+        "x": 72.19999999999999,
+        "y": -150.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "c54380e3-60ee-4edf-9d18-d271696c9a07",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "7755831c-a5aa-482a-80a6-060162f30873",
+        "de83a3bd-120c-4e43-b39f-200e34e85134",
+        "fb741949-61e0-4776-a183-456eebf6c7d9"
+      ],
+      "zIndex": 126,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7755831c-a5aa-482a-80a6-060162f30873",
+      "parent": "c54380e3-60ee-4edf-9d18-d271696c9a07",
+      "zIndex": 127
+    },
+    {
+      "position": {
+        "x": 140.2,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "de83a3bd-120c-4e43-b39f-200e34e85134",
+      "parent": "c54380e3-60ee-4edf-9d18-d271696c9a07",
+      "zIndex": 128
+    },
+    {
+      "position": {
+        "x": 192.2,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "fb741949-61e0-4776-a183-456eebf6c7d9",
+      "parent": "c54380e3-60ee-4edf-9d18-d271696c9a07",
+      "zIndex": 129
+    },
+    {
+      "position": {
+        "x": 72.19999999999999,
+        "y": -88.85714285714275
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "7b6bcc93-158e-458e-995e-41bffb976d30",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "de4237bb-64af-4cb6-b634-b1c9395527f7",
+        "4c2415d9-db30-4f29-b0b3-ed85c0a7415d",
+        "2eec6322-b243-4230-ac75-e04c44f3bb00"
+      ],
+      "zIndex": 130,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "de4237bb-64af-4cb6-b634-b1c9395527f7",
+      "parent": "7b6bcc93-158e-458e-995e-41bffb976d30",
+      "zIndex": 131
+    },
+    {
+      "position": {
+        "x": 140.2,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "4c2415d9-db30-4f29-b0b3-ed85c0a7415d",
+      "parent": "7b6bcc93-158e-458e-995e-41bffb976d30",
+      "zIndex": 132
+    },
+    {
+      "position": {
+        "x": 192.2,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "2eec6322-b243-4230-ac75-e04c44f3bb00",
+      "parent": "7b6bcc93-158e-458e-995e-41bffb976d30",
+      "zIndex": 133
+    },
+    {
+      "position": {
+        "x": 72.19999999999999,
+        "y": -26.999999999999886
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "0cf5763d-d5b7-46ff-9a97-d2868612935e",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "0155583a-5c68-444b-b98d-2cb9a54fb105",
+        "6e973c92-991d-4dd2-aaf2-a0090c794c02",
+        "f1334041-8e7f-4e09-a10d-1f2639287162"
+      ],
+      "zIndex": 134,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 88.19999999999997,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "0155583a-5c68-444b-b98d-2cb9a54fb105",
+      "parent": "0cf5763d-d5b7-46ff-9a97-d2868612935e",
+      "zIndex": 135
+    },
+    {
+      "position": {
+        "x": 140.2,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "6e973c92-991d-4dd2-aaf2-a0090c794c02",
+      "parent": "0cf5763d-d5b7-46ff-9a97-d2868612935e",
+      "zIndex": 136
+    },
+    {
+      "position": {
+        "x": 192.2,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f1334041-8e7f-4e09-a10d-1f2639287162",
+      "parent": "0cf5763d-d5b7-46ff-9a97-d2868612935e",
+      "zIndex": 137
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -444
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f41e8eaf-e8bf-46eb-9b99-d1032c734cd9",
+      "zIndex": 138,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 365,
+        "y": -445
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "a61ae9c8-569c-4716-b3a2-1097b8152253",
+      "zIndex": 139,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 365,
+        "y": -384
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "ba4557d8-90fe-4b1e-88ef-58f9a75b718c",
+      "zIndex": 140,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -383
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c0b9c608-6a4a-4c0e-a7c2-39052509631f",
+      "zIndex": 141,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -322
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "b73c7725-f9c5-4e0e-88e7-66a74aa6f7fe",
+      "zIndex": 142,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 365,
+        "y": -323
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "a8983a40-980e-4495-ad58-0352f0e7f508",
+      "zIndex": 143,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 265,
+        "y": -212.57142857142847
+      },
+      "size": {
+        "width": 175,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "28a728dd-599f-4ab4-b795-aad3c73d4eba",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "9a6c51ac-0255-4770-89d5-1103f3b9e4ff",
+        "de48201a-495b-415a-9968-6b1757798724",
+        "646cc46a-0631-47a6-b7a8-81b52590ade3"
+      ],
+      "zIndex": 148,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "9a6c51ac-0255-4770-89d5-1103f3b9e4ff",
+      "parent": "28a728dd-599f-4ab4-b795-aad3c73d4eba",
+      "zIndex": 149
+    },
+    {
+      "position": {
+        "x": 332.5,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "de48201a-495b-415a-9968-6b1757798724",
+      "parent": "28a728dd-599f-4ab4-b795-aad3c73d4eba",
+      "zIndex": 150
+    },
+    {
+      "position": {
+        "x": 384,
+        "y": -196.57142857142847
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "646cc46a-0631-47a6-b7a8-81b52590ade3",
+      "parent": "28a728dd-599f-4ab4-b795-aad3c73d4eba",
+      "zIndex": 151
+    },
+    {
+      "position": {
+        "x": 265,
+        "y": -150.7142857142856
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "c4617cc1-94fc-4f34-b54c-48f91ad22c46",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "22a539ed-a327-49ae-9129-9e7e8a39e9f5",
+        "8c4c7407-e324-43c6-b7e8-a516f9e18370",
+        "49ae646e-bc7a-41fc-b369-d61396698de8"
+      ],
+      "zIndex": 152,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "22a539ed-a327-49ae-9129-9e7e8a39e9f5",
+      "parent": "c4617cc1-94fc-4f34-b54c-48f91ad22c46",
+      "zIndex": 153
+    },
+    {
+      "position": {
+        "x": 333,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "8c4c7407-e324-43c6-b7e8-a516f9e18370",
+      "parent": "c4617cc1-94fc-4f34-b54c-48f91ad22c46",
+      "zIndex": 154
+    },
+    {
+      "position": {
+        "x": 385,
+        "y": -134.7142857142856
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "49ae646e-bc7a-41fc-b369-d61396698de8",
+      "parent": "c4617cc1-94fc-4f34-b54c-48f91ad22c46",
+      "zIndex": 155
+    },
+    {
+      "position": {
+        "x": 265,
+        "y": -88.85714285714275
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "e18697cb-68a5-41d7-bf43-4d77621a8925",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "37b6d3a2-13e9-41f5-ab2d-bcb968017f27",
+        "a129cbed-5613-4f32-9b85-f4de7967090e",
+        "6ee0afb8-0c32-4e24-adad-b53c895fc33f"
+      ],
+      "zIndex": 156,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "37b6d3a2-13e9-41f5-ab2d-bcb968017f27",
+      "parent": "e18697cb-68a5-41d7-bf43-4d77621a8925",
+      "zIndex": 157
+    },
+    {
+      "position": {
+        "x": 333,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "a129cbed-5613-4f32-9b85-f4de7967090e",
+      "parent": "e18697cb-68a5-41d7-bf43-4d77621a8925",
+      "zIndex": 158
+    },
+    {
+      "position": {
+        "x": 385,
+        "y": -72.85714285714275
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "6ee0afb8-0c32-4e24-adad-b53c895fc33f",
+      "parent": "e18697cb-68a5-41d7-bf43-4d77621a8925",
+      "zIndex": 159
+    },
+    {
+      "position": {
+        "x": 265,
+        "y": -26.999999999999886
+      },
+      "size": {
+        "width": 176,
+        "height": 70
+      },
+      "attrs": {
+        "body": {
+          "fill": "transparent",
+          "stroke": "transparent",
+          "strokeWidth": 2,
+          "strokeDasharray": "4 2",
+          "rx": 6,
+          "ry": 6
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "fabf0302-777c-419e-9a34-d2e0a89abc09",
+      "data": {
+        "isGroup": true
+      },
+      "children": [
+        "c07f1938-3f02-47f0-8e73-52618808c698",
+        "4a367ee1-6380-4368-86a6-376d171e1cdd",
+        "4aa6b6f5-27e1-48d4-b898-19b10c9b1edc"
+      ],
+      "zIndex": 160,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 281,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "c07f1938-3f02-47f0-8e73-52618808c698",
+      "parent": "fabf0302-777c-419e-9a34-d2e0a89abc09",
+      "zIndex": 161
+    },
+    {
+      "position": {
+        "x": 333,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "4a367ee1-6380-4368-86a6-376d171e1cdd",
+      "parent": "fabf0302-777c-419e-9a34-d2e0a89abc09",
+      "zIndex": 162
+    },
+    {
+      "position": {
+        "x": 385,
+        "y": -10.999999999999886
+      },
+      "size": {
+        "width": 40,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "4aa6b6f5-27e1-48d4-b898-19b10c9b1edc",
+      "parent": "fabf0302-777c-419e-9a34-d2e0a89abc09",
+      "zIndex": 163
+    },
+    {
+      "position": {
+        "x": -377.40000000000003,
+        "y": -258
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#1f4e78"
+        },
+        "topbar": {
+          "fill": "#1f4e78",
+          "stroke": "#1f4e78"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "e41010bb-8d36-4738-a425-f8261ac0a126",
+      "zIndex": 165,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 3
+      }
+    },
+    {
+      "position": {
+        "x": -293.40000000000003,
+        "y": -259
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        },
+        "body": {
+          "stroke": "#ff0000"
+        },
+        "topbar": {
+          "fill": "#ff0000",
+          "stroke": "#ff0000"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "f457066f-f93c-41b7-8926-40be5e1b73f6",
+      "zIndex": 166,
+      "parent": "06a33bff-3428-4414-aa3b-0f7343023a48",
+      "data": {
+        "roomOwnership": 7
+      }
+    },
+    {
+      "position": {
+        "x": -104.60000000000002,
+        "y": -258
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "463d8725-14b3-422a-8ffb-0e689f8bb1b8",
+      "zIndex": 167,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": -20.600000000000023,
+        "y": -259
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "ead16c31-1d0d-40ad-9e48-14bb375da5c0",
+      "zIndex": 168,
+      "parent": "5152d5fb-896b-4a4f-bd85-445849edd781"
+    },
+    {
+      "position": {
+        "x": 89.19999999999997,
+        "y": -258
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "34f18bd1-34a2-45ee-bc8f-fde613ecf1b0",
+      "zIndex": 169,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 173.2,
+        "y": -259
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "da70fd21-2823-4a84-8b00-630c86d65d62",
+      "zIndex": 170,
+      "parent": "3f005609-ef0d-46c1-8dd0-f5b850c10113"
+    },
+    {
+      "position": {
+        "x": 282,
+        "y": -258
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "74eb817a-bb87-4feb-92e3-b958da278075",
+      "zIndex": 171,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    },
+    {
+      "position": {
+        "x": 366,
+        "y": -259
+      },
+      "size": {
+        "width": 60,
+        "height": 38
+      },
+      "attrs": {
+        "text": {
+          "text": "318"
+        }
+      },
+      "visible": true,
+      "shape": "room-number",
+      "id": "7d8807df-dd73-416d-9de2-0191d0d913bc",
+      "zIndex": 172,
+      "parent": "8c72e10b-a2b9-4614-ad39-0acf2ad29274"
+    }
+  ],
+  "guides": []
+}
