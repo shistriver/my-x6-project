@@ -76,7 +76,7 @@ export const PALETTE_GROUPS: { title: string; items: PaletteItem[] }[] = [
           height: 60,
           label: '',
           attrs: {
-            body: { fill: '#ECF5FF', stroke: '#409EFF', strokeWidth: 1, rx: 4, ry: 4 },
+            body: { fill: '#ECF5FF', stroke: '#409EFF', strokeWidth: 1, rx: 0, ry: 0 },
             label: { fill: '#1F2329', fontSize: 14 },
           },
         },

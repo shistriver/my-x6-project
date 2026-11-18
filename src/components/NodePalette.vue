@@ -100,7 +100,6 @@ const handleMouseDown = (item: PaletteItem, e: MouseEvent) => {
 .thumb--rect {
   background: #ecf5ff;
   border: 1px solid #409eff;
-  border-radius: 3px;
 }
 .thumb--circle {
   width: 60px;
