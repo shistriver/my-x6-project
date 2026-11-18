@@ -475,7 +475,8 @@ export class GraphEditor {
       width: this.container.clientWidth,
       height: this.container.clientHeight,
       background: {
-        color: '#F2F7FA',
+        // 预览态用纯白底，编辑态保留浅蓝灰（与网格/工具栏视觉一致）
+        color: preview ? '#FFFFFF' : '#F2F7FA',
       },
       grid: preview
         ? { visible: false }
@@ -1541,6 +1542,8 @@ export class GraphEditor {
   /**
    * 从 localStorage 恢复草稿：整体替换当前画布内容
    * - 复用 importJSON 的"替换 + 适配视图 + 清空撤销栈"逻辑
+   * - 恢复后重置缩放为 100%：importJSON 收尾的 zoomToFit 只是适配视图，
+   *   与切换地图保持一致，这里用 zoomTo(1) 覆盖（视口操作，不污染撤销栈）
    * - 数据损坏 / 无草稿会向外抛错，由 UI 提示
    */
   loadDraft(): void {
@@ -1556,6 +1559,7 @@ export class GraphEditor {
     }
     if (!payload || payload.data == null) throw new Error('草稿数据损坏')
     this.importJSON(JSON.stringify(payload.data))
+    this.transform('zoomTo')
   }
 
   /**
@@ -2949,8 +2953,9 @@ export class GraphEditor {
     // （只改内存副本，不影响保存的数据）
     this.snapNodesToPixelGrid()
 
-    // 兜底重绘画布背景（与编辑态一致的浅蓝灰 #F2F7FA），避免预览出现白色。
-    g.drawBackground({ color: '#F2F7FA' })
+    // 兜底重绘画布背景为纯白（预览态统一白底）：fromJSON 后需重绘一次，
+    // 否则可能沿用上次背景。与 init(preview=true) 的白色保持一致。
+    g.drawBackground({ color: '#FFFFFF' })
 
     // 预览：未分配房间(allocated=false)套用置灰样式，并把所有房间节点的原始样式
     // 快照下来，供 Confirm/Remove 后还原；已分配房间保持 JSON 中的原始（橙色）外观。

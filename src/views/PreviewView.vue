@@ -364,7 +364,7 @@ const closePreview = () => {
   flex-direction: column;
   height: 100vh;
   box-sizing: border-box;
-  background: #f2f7fa;
+  background: #fff;
 }
 .preview-header {
   flex-shrink: 0;
@@ -386,12 +386,12 @@ const closePreview = () => {
   /* 内容四周留 20px 间距（画布在其中居中，不贴边） */
   padding: 20px;
   box-sizing: border-box;
-  /* 浅蓝灰底色（与编辑态一致），不出现白色 */
-  background: #f2f7fa;
+  /* 预览态纯白底（与画布背景一致），不出现蓝灰 */
+  background: #fff;
 }
 .preview-canvas {
   /* 画布尺寸由 X6 按内容实际尺寸铺开（resizeToContent），外层 .preview-scroll 负责滚动 */
-  background: #f2f7fa;
+  background: #fff;
   margin: 0 auto;
 }
 
