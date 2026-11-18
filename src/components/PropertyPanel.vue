@@ -8,11 +8,22 @@ import type {
   MultiRoomStyleState,
 } from '@/graph/GraphEditor'
 import { COMPANY_COLORS } from '@/graph/companyColors'
+import {
+  getCampTree,
+  getRoomsByBuilding,
+  findCampPathByBuildingId,
+  findBuildingByRoomNumber,
+  formatRoomNoForDisplay,
+  isBuilding,
+  type RoomOption,
+} from '@/graph/campData'
 
 const props = defineProps<{
   snapshot: NodeSnapshot | null
   multiStyle?: MultiStyleState | null
   multiRoom?: MultiRoomStyleState | null
+  /** 画布上已被其它节点占用的房间号（roomNumber 下拉据此禁用） */
+  assignedRoomNumbers?: string[]
 }>()
 const emit = defineEmits<{
   apply: [patch: NodePropsPatch]
@@ -89,6 +100,113 @@ watch(
 
 // 每次改动立即下发；用 change 而非 input，避免逐字符写入撤销栈
 const apply = (patch: NodePropsPatch) => emit('apply', patch)
+
+// ---------------- 房间分配：位置级联（营地→区域→楼栋）→ roomNumber ----------------
+const campTree = getCampTree()
+
+/** el-cascader 选项结构（只到楼栋这一级，叶子节点） */
+interface LocationOption {
+  value: number
+  label: string
+  children?: LocationOption[]
+}
+/** 由营地树生成级联选项；楼栋判定统一走 isBuilding（level 不规整） */
+const locationOptions: LocationOption[] = campTree.map((camp) => ({
+  value: camp.id,
+  label: camp.name,
+  children: (camp.children ?? []).map((zone) => ({
+    value: zone.id,
+    label: zone.name,
+    children: (zone.children ?? []).filter(isBuilding).map((b) => ({
+      value: b.id,
+      label: b.name,
+    })),
+  })),
+}))
+
+/** 级联选中路径：[营地 id, 区域 id, 楼栋 id]；选到楼栋才算有效 */
+const locationPath = ref<number[]>([])
+/** 当前楼栋 id（房间号下拉据此取数 / 启用） */
+const buildingId = computed<number | null>(() => locationPath.value[2] ?? null)
+const roomOptions = computed<RoomOption[]>(() =>
+  buildingId.value == null ? [] : getRoomsByBuilding(buildingId.value),
+)
+
+/** 房间号是否已被其它节点占用（自身当前值不算占用，允许重选/改选） */
+const isRoomTaken = (roomNumber: string): boolean => {
+  const self = props.snapshot?.room?.roomNo?.trim()
+  if (self === roomNumber) return false
+  return (props.assignedRoomNumbers ?? []).includes(roomNumber)
+}
+
+// 快照回填级联路径：优先用 locationId 反推；旧数据无 locationId 时用 roomNo 兜底
+watch(
+  () => props.snapshot,
+  (s) => {
+    if (!s || s.shape !== 'room-number') {
+      locationPath.value = []
+      return
+    }
+    const r = s.room
+    let bid = r.locationId
+    if (bid == null && r.roomNo) bid = findBuildingByRoomNumber(r.roomNo)?.locationId ?? null
+    const path = bid != null ? findCampPathByBuildingId(bid) : null
+    locationPath.value = path ? [path.camp.id, path.zone.id, path.building.id] : []
+  },
+  { immediate: true },
+)
+
+/** 级联变化：只有选到楼栋（完整路径）才更新，未选完或清空时归零 */
+const onLocationChange = (v: unknown) => {
+  locationPath.value = Array.isArray(v) && v.length === 3 ? (v as number[]) : []
+}
+
+/** 选中房间号：一次性写入显示文字（换行版）+ 房间业务信息（原始号/归属/来源字段） */
+const onRoomNumberPick = (roomNumber: string) => {
+  const s = props.snapshot
+  if (!s) return
+  const room = roomOptions.value.find((r) => r.roomNumber === roomNumber)
+  if (!room) return
+  apply({
+    label: formatRoomNoForDisplay(room.roomNumber),
+    room: {
+      roomNo: room.roomNumber,
+      roomId: room.id,
+      locationId: room.locationId,
+      zoneId: room.zoneId,
+      campId: room.campId,
+      camp: room.camp,
+      zone: room.zone,
+      building: room.building,
+      allocated: true,
+      category: room.categoryName,
+      status: room.roomStatus === 1 ? 'Available' : 'Not Available',
+      ipPhoneExt: room.ipPhoneExt,
+      musterPoint: room.musterPointName ?? '',
+      rotationPattern: room.rotationType ?? '',
+      rotatorOnly: room.rotatorOnly === 1,
+      company: room.company,
+      reserveCompany: room.roomOwnershipName ?? '',
+      reserveColor: room.color ?? '',
+      remark: room.roomRemark ?? '',
+    },
+  })
+}
+
+/** 清除房间分配：清空显示文字与关联 id，allocated 归 false */
+const onClearRoom = () => {
+  apply({
+    label: '',
+    room: {
+      roomNo: '',
+      roomId: null,
+      locationId: null,
+      zoneId: null,
+      campId: null,
+      allocated: false,
+    },
+  })
+}
 
 // ---------------- 批量样式（多选覆盖显示） ----------------
 const multiForm = ref({
@@ -386,7 +504,8 @@ const onRoomNumber = (
 
       <template v-if="!snapshot.isGroup && !snapshot.isWall">
         <div class="section-title">内容</div>
-        <el-form-item label="文字">
+        <!-- 编号房间的文字由「房间分配」下拉写入，隐藏手输框避免两处改同一值 -->
+        <el-form-item label="文字" v-if="snapshot.shape !== 'room-number'">
           <el-input
             v-model="form.label"
             type="textarea"
@@ -426,12 +545,46 @@ const onRoomNumber = (
           </el-form-item>
         </div>
 
-        <!-- 编号房间专属：归属公司下拉框（顶部色条 / 填充 / 描边 共用该公司颜色） -->
+        <!-- 编号房间专属：房间分配（营地→区域→楼栋→房间号）；显示文字与 roomNo 由此联动写入 -->
         <template v-if="snapshot.shape === 'room-number'">
           <div class="section-subtitle">
-            <span>归属公司</span>
+            <span>房间分配</span>
           </div>
-          <el-form-item label="公司 / 归属">
+          <el-form-item label="营地/区域/楼栋">
+            <el-cascader
+              :model-value="locationPath"
+              :options="locationOptions"
+              placeholder="选择营地 / 区域 / 楼栋"
+              clearable
+              :show-all-levels="true"
+              @change="onLocationChange"
+            />
+          </el-form-item>
+          <el-form-item label="房间号">
+            <el-select
+              :model-value="snapshot.room.roomNo || null"
+              placeholder="选择房间号"
+              clearable
+              :disabled="buildingId == null"
+              @change="(v: string | null) => (v ? onRoomNumberPick(v) : onClearRoom())"
+            >
+              <el-option
+                v-for="r in roomOptions"
+                :key="r.id"
+                :value="r.roomNumber"
+                :label="r.roomNumber"
+                :disabled="isRoomTaken(r.roomNumber)"
+              >
+                <span>{{ r.roomNumber }}</span>
+                <span v-if="isRoomTaken(r.roomNumber)" class="room-taken">（已分配）</span>
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </template>
+
+        <!-- 编号房间专属：归属公司下拉框（顶部色条 / 填充 / 描边 共用该公司颜色） -->
+        <template v-if="snapshot.shape === 'room-number'">
+          <el-form-item label="公司">
             <el-select
               v-model="form.roomOwnership"
               placeholder="选择公司（留空为自定义）"
@@ -449,7 +602,7 @@ const onRoomNumber = (
               </el-option>
             </el-select>
           </el-form-item>
-          <p class="co-hint">选择公司后，顶部色条与描边使用该公司颜色，房间内部填充保持白色。</p>
+          <!-- <p class="co-hint">选择公司后，顶部色条与描边使用该公司颜色，房间内部填充保持白色。</p> -->
         </template>
 
         <!-- 编号房间专属：面积文字（area 选择器）的显示与编辑 -->
@@ -493,22 +646,7 @@ const onRoomNumber = (
               />
             </el-form-item>
           </div>
-        </template>
-
-        <!-- 编号房间专属：顶部色条高度（颜色由「归属公司」统一控制） -->
-        <template v-if="snapshot.shape === 'room-number'">
-          <div class="section-subtitle">
-            <span>顶部色条</span>
-          </div>
-          <el-form-item label="色条高度">
-            <el-input-number
-              v-model="form.topbarHeight"
-              :min="0"
-              :max="40"
-              @change="apply({ topbarHeight: form.topbarHeight })"
-            />
-          </el-form-item>
-        </template>
+        </template>        
       </template>
 
       <!-- 事件开关：仅非房间 / 非墙 / 非组合节点；房间节点由分配状态控制，此处不生效 -->
@@ -715,5 +853,10 @@ const onRoomNumber = (
   font-size: 11px;
   line-height: 1.5;
   color: #a8abb2;
+}
+.room-taken {
+  float: right;
+  font-size: 11px;
+  color: #c0c4cc;
 }
 </style>

@@ -137,6 +137,8 @@ const onMapSwitch = (id: string | null) => {
   const ed = editor.value
   if (!ed) return
   if (id === currentMapId.value) return
+  // 切换地图会先存回旧地图；房间号重复时整段阻断，画布与当前地图 id 都不变
+  if (!guardRoomNumbers()) return
 
   // 1) 把当前画布内容存回「旧地图」（旧地图已删除时 updateCampMapContent 会静默忽略）
   if (currentMapId.value != null) {
@@ -173,6 +175,7 @@ const fileInputRef = ref<HTMLInputElement>()
 
 // 导出：把画布序列化为 JSON 文件下载到本地
 const handleExport = () => {
+  if (!guardRoomNumbers()) return
   const json = editor.value?.exportJSON()
   if (json == null) return
   const blob = new Blob([json], { type: 'application/json' })
@@ -242,6 +245,7 @@ const handleClearCanvas = async () => {
 // ---------------- 草稿（存浏览器本地，关掉再开可找回） ----------------
 // 保存草稿：把当前画布写入 localStorage，覆盖式，带保存时间
 const handleSaveDraft = () => {
+  if (!guardRoomNumbers()) return
   try {
     const time = editor.value?.saveDraft()
     ElMessage.success(`草稿已保存（${time}）`)
@@ -435,10 +439,14 @@ const multiStyle = ref<MultiStyleState | null>(null)
 // 多选且「全部为编号房间」时的房间批量样式状态（归属公司 / 色条 / 面积 / 描边等）
 const multiRoom = ref<MultiRoomStyleState | null>(null)
 
+// 已被占用的房间号（供属性面板 roomNumber 下拉禁用），随选区/节点变化刷新
+const assignedRoomNumbers = ref<string[]>([])
+
 const syncNodeSnapshot = () => {
   nodeSnapshot.value = editor.value?.getSelectedNodeSnapshot() ?? null
   multiStyle.value = editor.value?.getMultiStyleState() ?? null
   multiRoom.value = editor.value?.getRoomStyleState() ?? null
+  assignedRoomNumbers.value = Array.from(editor.value?.getAssignedRoomNumbers() ?? [])
 }
 
 const handleApply = (patch: NodePropsPatch) => {
@@ -451,6 +459,19 @@ const handleApplyMulti = (patch: NodePropsPatch) => {
 
 const handleApplyRoom = (patch: NodePropsPatch) => {
   editor.value?.applyRoomStyle(patch)
+}
+
+/**
+ * 保存前校验房间号唯一性：有重复则阻断并返回 false。
+ * 供保存草稿 / 导出 JSON / 切换地图共用，避免多入口漏校验。
+ */
+const guardRoomNumbers = (): boolean => {
+  const dup = editor.value?.validateRoomNumbers() ?? []
+  if (dup.length > 0) {
+    ElMessage.error(`房间号重复，无法保存：${dup.join('、')}`)
+    return false
+  }
+  return true
 }
 
 onMounted(() => {
@@ -570,6 +591,7 @@ onBeforeUnmount(() => {
         :snapshot="nodeSnapshot"
         :multi-style="multiStyle"
         :multi-room="multiRoom"
+        :assigned-room-numbers="assignedRoomNumbers"
         @apply="handleApply"
         @apply-multi="handleApplyMulti"
         @apply-room="handleApplyRoom"

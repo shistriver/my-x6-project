@@ -109,8 +109,16 @@ export interface NodeEventFlags {
  * `allocated=true` 时弹框走「ROOM DETAILS」样式（含 Remove Binding），否则走「Confirm Room Allocation」样式。
  */
 export interface RoomInfo {
-  /** 房间号（留空则回退到节点上的编号文字） */
+  /** 房间号原始值（如 "73/74"，唯一性以此为准；节点显示文字是换行版） */
   roomNo: string
+  /** 接口房间记录 id（roomNumber 下拉选中后写入，唯一标识） */
+  roomId: number | null
+  /** 楼栋 id（locationId，下拉三级级联最终选中值） */
+  locationId: number | null
+  /** 区域 id */
+  zoneId: number | null
+  /** 营地 id */
+  campId: number | null
   /** 是否已分配房间（决定弹框样式与按钮） */
   allocated: boolean
   camp: string
@@ -172,6 +180,10 @@ export interface PreviewNodeClick {
 export function createRoomInfo(): RoomInfo {
   return {
     roomNo: '',
+    roomId: null,
+    locationId: null,
+    zoneId: null,
+    campId: null,
     allocated: false,
     camp: '',
     zone: '',
@@ -1691,9 +1703,15 @@ export class GraphEditor {
     const raw = (data?.room ?? {}) as Partial<RoomInfo>
     const base = createRoomInfo()
     const str = (v: unknown): string => (typeof v === 'string' ? v : '')
+    const num = (v: unknown): number | null =>
+      typeof v === 'number' && Number.isFinite(v) ? v : null
     return {
       ...base,
       roomNo: str(raw.roomNo),
+      roomId: num(raw.roomId),
+      locationId: num(raw.locationId),
+      zoneId: num(raw.zoneId),
+      campId: num(raw.campId),
       allocated: !!raw.allocated,
       camp: str(raw.camp),
       zone: str(raw.zone),
@@ -1732,6 +1750,41 @@ export class GraphEditor {
     const data = { ...(node.getData() ?? {}) } as Record<string, unknown>
     data.room = { ...this.readRoomInfo(node), ...patch }
     node.setData(data)
+  }
+
+  /**
+   * 画布上已被分配的房间号集合（roomNo 非空）。
+   * 供属性面板的 roomNumber 下拉禁用「已被其它节点占用」的号。
+   * @param excludeNodeId 排除指定节点（编辑自身时，自身当前占用的号仍应可选）
+   */
+  getAssignedRoomNumbers(excludeNodeId?: string): Set<string> {
+    const g = this.graph
+    const set = new Set<string>()
+    if (!g) return set
+    g.getNodes().forEach((node) => {
+      if (node.id === excludeNodeId) return
+      const no = this.readRoomInfo(node).roomNo.trim()
+      if (no) set.add(no)
+    })
+    return set
+  }
+
+  /**
+   * 校验画布内 roomNumber 唯一性（原始值 roomNo，空值跳过）。
+   * @returns 重复的房间号数组（每个号只出现一次）；空数组表示校验通过
+   */
+  validateRoomNumbers(): string[] {
+    const g = this.graph
+    if (!g) return []
+    const seen = new Map<string, number>()
+    g.getNodes().forEach((node) => {
+      const no = this.readRoomInfo(node).roomNo.trim()
+      if (!no) return
+      seen.set(no, (seen.get(no) ?? 0) + 1)
+    })
+    return Array.from(seen.entries())
+      .filter(([, count]) => count > 1)
+      .map(([no]) => no)
   }
 
   /**
