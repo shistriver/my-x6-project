@@ -151,9 +151,8 @@ const onMapSwitch = (id: string | null) => {
   } else {
     const target = loadCampMaps().find((m) => m.id === id)
     if (target?.content) {
+      // importJSON 内部已统一重置缩放为 100%
       ed.importJSON(target.content)
-      // importJSON 默认会 zoomToFit，这里覆盖回 100%（用户要求切换时重置缩放）
-      ed.transform('zoomTo')
     } else if (currentMapId.value == null) {
       // 目标地图尚无内容，且当前未归属任何地图：把当前画布收归该地图，
       // 避免「先画几笔再新建第一张地图」时把未保存内容丢掉（画布不变，不重置缩放）

@@ -22,13 +22,18 @@ const PREVIEW_KEY = 'camp-map-preview'
 /** 当前 hover 的房间节点（null = 无 hover，卡片隐藏） */
 const hovered = ref<RoomHoverPayload | null>(null)
 
+/** 统一的客人数据源：分配记录优先，否则 mock 场景（hover 卡片与入住染色共用，避免两套逻辑分叉） */
+const resolveGuestInfo = (id: string, roomNo: string, category: string): RoomGuestInfo => {
+  const alloc = getAllocation(id)
+  if (alloc) return allocationToGuestInfo(alloc)
+  return getRoomGuestInfo(roomNo, id, category)
+}
+
 /** hover 卡片的房间客人数据：优先显示「房间分配」已同步的旅客，否则走 mock 场景 */
 const guestInfo = computed<RoomGuestInfo | null>(() => {
   const h = hovered.value
   if (!h) return null
-  const alloc = getAllocation(h.id)
-  if (alloc) return allocationToGuestInfo(alloc)
-  return getRoomGuestInfo(h.roomNo, h.id, h.category)
+  return resolveGuestInfo(h.id, h.roomNo, h.category)
 })
 
 /** 是否无人房（四类都空 → 显示房间分类气泡） */
@@ -141,6 +146,10 @@ onMounted(() => {
   if (json) {
     try {
       editor.value.loadJSONForPreview(json)
+      // 已入住房间（有 Current Guest）染色：body #fcfdbb / 文字 #b8b6b6；判定与卡片同源
+      editor.value.markOccupiedRooms((roomNo, nodeId, category) =>
+        resolveGuestInfo(nodeId, roomNo, category).current.length > 0,
+      )
     } catch (e) {
       console.error('reception 数据加载失败', e)
     }

@@ -1520,6 +1520,11 @@ export class GraphEditor {
     g.cleanSelection()
     if (g.getCellCount() > 0) g.zoomToFit({ padding: 20 })
     g.cleanHistory()
+    // 整体替换画布后统一重置缩放为 100%：importJSON 收尾的 zoomToFit 只是把内容
+    // 适配进视口，缩放值随内容大小变化。三条路径（导入 JSON / 恢复草稿 / 切换地图）
+    // 都要求重置，下沉到这里统一处理，避免调用方各自补一行而漏掉（导入曾因此漏改）。
+    // zoomTo 是视口操作，不进撤销栈，cleanHistory 之后调用不受影响。
+    this.transform('zoomTo')
   }
 
   /**
@@ -1565,9 +1570,7 @@ export class GraphEditor {
 
   /**
    * 从 localStorage 恢复草稿：整体替换当前画布内容
-   * - 复用 importJSON 的"替换 + 适配视图 + 清空撤销栈"逻辑
-   * - 恢复后重置缩放为 100%：importJSON 收尾的 zoomToFit 只是适配视图，
-   *   与切换地图保持一致，这里用 zoomTo(1) 覆盖（视口操作，不污染撤销栈）
+   * - 复用 importJSON 的"替换 + 适配视图 + 重置缩放为 100% + 清空撤销栈"逻辑
    * - 数据损坏 / 无草稿会向外抛错，由 UI 提示
    */
   loadDraft(): void {
@@ -1583,7 +1586,6 @@ export class GraphEditor {
     }
     if (!payload || payload.data == null) throw new Error('草稿数据损坏')
     this.importJSON(JSON.stringify(payload.data))
-    this.transform('zoomTo')
   }
 
   /**
@@ -1977,6 +1979,27 @@ export class GraphEditor {
       this.setAllocationClass(node, 'room-not-allocatable', !ok)
       // 光标直接设在视图 <g>（子 rect/text 继承），否则挂在容器 div 上无法穿透 SVG
       this.setRoomCursor(node, ok ? 'pointer' : 'not-allowed')
+    })
+  }
+
+  /**
+   * Reception 页专用：给「已入住」房间节点染色（常驻写入节点 attrs，与 hover 无关）。
+   * - 已入住（判定回调返回 true）：body/fill = #fcfdbb、label/fill = #b8b6b6
+   * - 未入住：保持画布原有外观，不写属性
+   * 判定标准由页面提供（复用其客人数据源），避免把"入住"业务定义写死在画布类里。
+   * 应在 loadJSONForPreview 之后调用。
+   */
+  markOccupiedRooms(
+    isOccupied: (roomNo: string, nodeId: string, category: string) => boolean,
+  ): void {
+    const g = this.graph
+    if (!g) return
+    g.getNodes().forEach((node) => {
+      if (!this.isRoomNode(node)) return
+      const room = this.readRoomInfo(node)
+      if (!isOccupied(room.roomNo, node.id, room.category)) return
+      node.attr('body/fill', '#fcfdbb')
+      node.attr('label/fill', '#b8b6b6')
     })
   }
 
