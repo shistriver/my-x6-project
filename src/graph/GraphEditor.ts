@@ -385,9 +385,9 @@ export class GraphEditor {
   private static readonly GROUP_HL_STROKE = '#409EFF'
   /** 组合容器 hover 时的填充色 */
   private static readonly GROUP_HL_FILL = 'rgba(64,158,255,0.06)'
-  /** 文字节点自适应时，文字与节点边缘的内边距（px），避免文字贴边或被裁切 */
-  private static readonly TEXT_PAD_X = 4
-  private static readonly TEXT_PAD_Y = 2
+  /** 文字节点自适应时，文字与节点边缘的内边距（px）。设为 0 = 完全紧贴文字渲染边界。 */
+  private static readonly TEXT_PAD_X = 0
+  private static readonly TEXT_PAD_Y = 0
   /** 组合成员拖拽的启动阈值（px），与 Graph 的 moveThreshold 保持一致，
    *  避免点击时 1~2px 抖动就把整组挪走 */
   private static readonly MOVE_THRESHOLD = 2
@@ -435,6 +435,8 @@ export class GraphEditor {
   private groupDragging = false
   /** 最近一次 dnd 落点生成的节点 id，用于放置后自动选中 */
   private pendingDropId: string | null = null
+  /** 等待下一帧用真实 DOM 尺寸重新自适应的文字节点 id 集合（拖入/导入时 view 尚未渲染） */
+  private pendingTextFitIds = new Set<string>()
 
   // ---------------- 画布参考线（标尺拖出 + 吸附） ----------------
   /** 参考线列表（画布局部坐标，持久化） */
@@ -1501,6 +1503,13 @@ export class GraphEditor {
     if (!g) return
     const data = JSON.parse(text)
     g.fromJSON(data)
+    // 文字节点按内容重新自适应：导入/恢复草稿的数据里存的是旧尺寸（默认 120×40 或用户
+    // 手动调过的值），不重算就会出现「框比文字大很多、不贴内容」。拖入路径已在 node:added
+    // 里 fit，这里补上其余所有加载路径（导入 JSON / 恢复草稿 / 切换地图都走 importJSON）。
+    // 放在 zoomToFit 之前：fit 会改节点尺寸，先 fit 再适配视图，内容才紧凑且居中。
+    g.getNodes().forEach((node) => {
+      if (this.isTextNode(node)) this.fitTextNode(node)
+    })
     // 恢复参考线（旧格式无 guides 字段则清空）；graph:transform(zoomToFit) 会触发重绘
     this.guides = Array.isArray(data.guides)
       ? (data.guides as GuideLine[]).filter(
@@ -2433,43 +2442,103 @@ export class GraphEditor {
   }
 
   /**
-   * 文字节点自适应：测量文字真实渲染尺寸，并把节点宽高缩放到刚好包裹文字
-   * - 用离屏 canvas 的 measureText 测量，与浏览器实际渲染一致（含 CJK 宽度差异）
-   * - 支持多行（按 \n 拆分，每行取最宽，高度为行数 × 行高）
-   * - 预留少量内边距，避免文字贴边或被裁切
+   * 文字节点自适应：把节点宽高缩放到刚好包裹其渲染文字。
+   *
+   * 尺寸来源优先级：真实 DOM 的 <text>.getBBox() > 离屏 canvas 估算。
+   * - getBBox 与最终渲染同源（含字体/CJK 差异），零误差；canvas 与 SVG 是两套字体度量，
+   *   同 "Text content" 14px 时 canvas 82.3 vs SVG 78.6，用 canvas 会把节点撑大几 px。
+   * - 拖入落图 / 导入 JSON / 面板改文字字号的当下，view 里的 <text> 可能还没按最新内容
+   *   渲染完，此时读到的 bbox 是旧的或读不到 → 先按能读到的做一次，并排到下一帧 DOM
+   *   稳定后再用真实 bbox 精确重算一次（pendingTextFitIds 去重，重算帧不再排队）。
+   *
+   * ⚠️ 不要按 graph zoom 换算：canvas 的 px 与 <text>.getBBox() 都是节点内部局部坐标
+   *    （X6 的 zoom 是套在外层的 transform scale，不改节点内字体的局部 px 值），节点
+   *    width/height 也是局部坐标，同坐标系直接相加。曾除以 zoom 导致缩放后尺寸错乱。
+   *
+   * @param retry 是否允许排下一帧重算；重算帧传 false 避免无限递归
    */
-  private fitTextNode(node: Node): void {
+  private fitTextNode(node: Node, retry = true): void {
     if (!this.isTextNode(node)) return
     const text = this.readNodeLabel(node)
     const fontSize = this.readNodeFontSize(node)
     const fontFamily = this.readNodeFontFamily(node)
 
-    const { width, height } = this.measureTextSize(text, fontSize, fontFamily)
-    // 节点尺寸是画布坐标系下的数值，而 measureText 返回的是屏幕像素，
-    // 二者仅在缩放=1 时一致；按当前缩放换算，保证任意缩放级别下显示都贴合文字
-    const zoom = this.graph ? this.graph.zoom() : 1
-    const k = zoom > 0 ? zoom : 1
-    const newWidth = Math.max((width + GraphEditor.TEXT_PAD_X * 2) / k, 30)
-    const newHeight = Math.max((height + GraphEditor.TEXT_PAD_Y * 2) / k, 24)
+    const { width, height, fromDom } = this.measureTextSize(text, fontSize, fontFamily, node)
+    // 没拿到真实 DOM bbox（内容刚变、view 未渲染完）时，下一帧 DOM 稳定后再精确重算一次。
+    if (retry && !fromDom && !this.pendingTextFitIds.has(node.id)) {
+      this.pendingTextFitIds.add(node.id)
+      requestAnimationFrame(() => {
+        this.pendingTextFitIds.delete(node.id)
+        if (this.graph?.getCellById(node.id) === node) this.fitTextNode(node, false)
+      })
+    }
+
+    // 宽度：完全贴合文字（pad=0）；高度：文字 bbox 高 + 必要余量。
+    // ⚠️ tspan 有 dy=0.3em 下移、且 X6 画布 SVG overflow:hidden，高度取太小会裁掉文字底部，
+    //    故高度给字号级的最小余量（约一行 = fontSize），而非死板 24。
+    const newWidth = Math.max(width + GraphEditor.TEXT_PAD_X * 2, 1)
+    const newHeight = Math.max(height + GraphEditor.TEXT_PAD_Y * 2, Math.round(fontSize * 1.4))
 
     // ⚠️ 保住节点中心：Dnd 落点把"节点中心"对齐到鼠标，而 X6 resize 默认保持
-    // 左上角（origin）不变、只改尺寸。文字节点初始尺寸（meta 120×40）与按文字
-    // 自适应尺寸不一致时，resize 后中心会偏移到新尺寸/2 处 → 拖放松手后节点
-    // 肉眼跳位。先记旧中心，resize 后再把中心平移回原处，落点不丢。
+    // 左上角（origin）不变、只改尺寸。先记旧中心，resize 后再平移回来，落点不丢。
     const oldCenter = node.getBBox().getCenter()
     node.resize(newWidth, newHeight)
     const newCenter = node.getBBox().getCenter()
     if (Math.abs(newCenter.x - oldCenter.x) > 1e-3 || Math.abs(newCenter.y - oldCenter.y) > 1e-3) {
       node.translate(oldCenter.x - newCenter.x, oldCenter.y - newCenter.y)
     }
+    // 选中框（Transform widget）不会跟着 resize 自动刷新，多行文字从单行尺寸变高后
+    // 会出现"文字竖排溢出、框还是横扁"的错位。这里显式重建一次变换框。
+    if (this.graph?.getSelectedCells().includes(node)) this.syncTransformWidget()
   }
 
-  /** 用离屏 canvas 测量文字尺寸（兜底：无法创建 canvas 时用经验值估算） */
+  /**
+   * 测量文字尺寸。
+   * ⚠️ 优先读真实 DOM 里 <text> 的 getBBox()：canvas.measureText 与 SVG 文本渲染
+   *    用的是两套字体度量（实测同一 "Text content" 14px sans-serif：canvas 82.3px、
+   *    SVG 78.6px），用 canvas 结果会把节点撑大 3~4px，视觉上「文字不贴框」。
+   *    getBBox 与最终渲染同源，零误差。node:added / 属性面板改文字时 view 都已渲染，
+   *    能直接读到；只有 view 尚未生成（如极端时序）才回退 canvas。
+   */
   private measureTextSize(
     text: string,
     fontSize: number,
     fontFamily: string,
-  ): { width: number; height: number } {
+    node?: Node,
+  ): { width: number; height: number; fromDom: boolean } {
+    if (node && this.graph) {
+      try {
+        const view = node.findView(this.graph)
+        const textEl = view?.container?.querySelector('text') as SVGTextElement | null
+        // ⚠️ 必须确认这个 <text> 渲染的正是当前文字：面板刚改完 label 时 DOM 可能还是旧内容，
+        //    直接读旧 bbox 会算错且误判 fromDom=true。
+        // ⚠️ 换行不能丢！X6 把 \n 渲染成多个 <tspan>，textContent 里没有 \n；
+        //    旧逻辑用 \s+ 把所有空白（含换行）抹掉后比对，"Text content"（单行）和
+        //    "T\ne\nx\nt..."（多行）会被判为同一内容 → 读到旧的单行 bbox 且 fromDom=true
+        //    → 跳过 rAF 重测 → 节点保持单行尺寸，多行文字溢出成竖排（用户截图场景）。
+        //    正确做法：按 <tspan> 逐行比对，只归一化行内空格，保留行数与行序。
+        const normLine = (s: string) => s.replace(/\u00A0/g, ' ').replace(/[ \t]+/g, ' ').trim()
+        const wantLines = (text || ' ').split('\n').map(normLine)
+        const tspans = textEl ? Array.from(textEl.querySelectorAll('tspan')) : []
+        const domLines = tspans.length > 0
+          ? tspans.map((t) => normLine(t.textContent ?? ''))
+          : [normLine(textEl?.textContent ?? '')]
+        const textMatches = domLines.length === wantLines.length &&
+          domLines.every((line, i) => line === wantLines[i])
+        // 字号也要一致：面板改 fontSize 时文字内容没变，仅比对内容会把"旧字号 DOM"误判为有效，
+        // 导致按旧 bbox 设定尺寸（改字号后节点不跟随变宽/变高）。X6 渲染成 font-size="20"。
+        const domFontSize = parseFloat(textEl?.getAttribute('font-size') ?? '')
+        const fontSizeOk = Number.isNaN(domFontSize) || Math.abs(domFontSize - fontSize) < 0.5
+        if (textEl && wantLines.length > 0 && textMatches && fontSizeOk) {
+          const bbox = textEl.getBBox()
+          if (bbox && bbox.width > 0 && bbox.height > 0) {
+            return { width: Math.ceil(bbox.width), height: Math.ceil(bbox.height), fromDom: true }
+          }
+        }
+      } catch {
+        // view 未就绪 / getBBox 抛错 → 回退到 canvas 估算（下一帧会重试）
+      }
+    }
     const lines = (text && text.length ? text : ' ').split('\n')
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
@@ -2478,14 +2547,14 @@ export class GraphEditor {
       const width = Math.max(...lines.map((l) => ctx.measureText(l || ' ').width))
       const lineHeight = Math.round(fontSize * 1.2)
       const height = Math.max(lineHeight, lines.length * lineHeight)
-      return { width: Math.ceil(width), height: Math.ceil(height) }
+      return { width: Math.ceil(width), height: Math.ceil(height), fromDom: false }
     }
     // 兜底估算：无法创建 canvas 时退化为字符数 × 字号
     const width = Math.max(
       ...lines.map((l) => (l || ' ').length * fontSize * 0.6),
     )
     const height = Math.max(fontSize * 1.2, lines.length * fontSize * 1.2)
-    return { width: Math.ceil(width), height: Math.ceil(height) }
+    return { width: Math.ceil(width), height: Math.ceil(height), fromDom: false }
   }
 
   /**
