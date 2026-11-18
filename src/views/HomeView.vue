@@ -301,16 +301,16 @@ const offerDraftRestore = () => {
     })
 }
 
-// ---------------- 预览：新开路由页面（只读，不可平移/缩放/改变大小） ----------------
-const openPreview = () => {
+// ---------------- 预览 / 前台接待：新开只读路由页面（不可平移/缩放/改变大小） ----------------
+const openReadOnlyPage = (route: 'preview' | 'reception') => {
   const json = editor.value?.exportJSON()
   if (json == null) return
-  // 把当前画布写入本地，供预览页读取（同源 localStorage 共享）
+  // 把当前画布写入本地，供只读页读取（同源 localStorage 共享）
   localStorage.setItem('camp-map-preview', json)
-  // 新开页面打开预览路由
-  const url = `${import.meta.env.BASE_URL}preview`
-  window.open(url, '_blank')
+  window.open(`${import.meta.env.BASE_URL}${route}`, '_blank')
 }
+const openPreview = () => openReadOnlyPage('preview')
+const openReception = () => openReadOnlyPage('reception')
 
 // ---------------- 右键菜单 ----------------
 const menuVisible = ref(false)
@@ -545,6 +545,7 @@ onBeforeUnmount(() => {
           <el-button @click="handleSaveDraft">保存草稿</el-button>
           <el-button @click="handleLoadDraft">恢复草稿</el-button>
           <el-button type="primary" @click="openPreview">预览</el-button>
+          <el-button @click="openReception">前台接待</el-button>
           <el-button @click="toggleGuides">{{ guidesVisible ? '隐藏参考线' : '显示参考线' }}</el-button>
           <el-button @click="handleClearGuides">清除参考线</el-button>
           <el-tooltip content="快捷键说明" placement="bottom">

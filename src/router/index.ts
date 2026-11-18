@@ -18,6 +18,11 @@ const router = createRouter({
       name: 'preview',
       component: () => import('@/views/PreviewView.vue'),
     },
+    {
+      path: '/reception',
+      name: 'reception',
+      component: () => import('@/views/ReceptionView.vue'),
+    },
   ],
   scrollBehavior() {
     return { top: 0 }

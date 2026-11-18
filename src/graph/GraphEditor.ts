@@ -159,6 +159,15 @@ export interface PreviewNodeClick {
   room: RoomInfo
 }
 
+/** Reception 页房间节点 hover 回抛的数据（只读，不改画布） */
+export interface RoomHoverPayload {
+  id: string
+  roomNo: string
+  category: string
+  /** 节点在视口中的屏幕矩形（getBoundingClientRect），用于把卡片定位到节点正上方 */
+  rect: { left: number; top: number; right: number; bottom: number; width: number; height: number }
+}
+
 /** 空房间信息：所有字段的兜底值（属性面板初始化表单也用） */
 export function createRoomInfo(): RoomInfo {
   return {
@@ -1895,6 +1904,41 @@ export class GraphEditor {
       if (this.isGroupContainer(node)) return
       this.setRoomCursor(node, 'default')
       this.setPreviewHover(node, false)
+    })
+  }
+
+  /**
+   * Reception 页专用：只订阅房间节点的 hover，回抛房号/分类/屏幕坐标。
+   * - 仅房间节点触发（非房间无 hover 效果），pointer 光标 + 高亮复用预览态样式。
+   * - 鼠标离开回抛 null，供页面隐藏卡片。
+   * - 只读：只加/移除视图 class 与光标，不写节点数据、不触发选择。
+   */
+  onRoomHover(cb: (payload: RoomHoverPayload | null) => void): void {
+    const g = this.graph
+    if (!g || !this.preview) return
+    g.on('node:mouseenter', ({ node }: { node: Node }) => {
+      if (!this.isRoomNode(node)) return
+      this.setRoomCursor(node, 'pointer')
+      this.setPreviewHover(node, true)
+      const room = this.readRoomInfo(node)
+      // 节点视图根元素的屏幕矩形（<g> 的 getBoundingClientRect 即 CSS 像素、相对视口）
+      const view = g.findViewByCell(node)
+      const el = view?.container as SVGElement | undefined
+      const r = el?.getBoundingClientRect?.()
+      cb({
+        id: node.id,
+        roomNo: room.roomNo,
+        category: room.category,
+        rect: r
+          ? { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height }
+          : { left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 0 },
+      })
+    })
+    g.on('node:mouseleave', ({ node }: { node: Node }) => {
+      if (!this.isRoomNode(node)) return
+      this.setRoomCursor(node, 'default')
+      this.setPreviewHover(node, false)
+      cb(null)
     })
   }
 
