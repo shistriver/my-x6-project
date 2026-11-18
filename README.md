@@ -1,7 +1,9 @@
 # 营地地图布局编辑器（Camp Map Editor）
 
 基于 **Vue 3 + TypeScript + Vite + AntV X6 3.x + Element Plus** 的营地平面图可视化编辑器。
-用于绘制营地布局（编号房间、墙体、文字标注等）、管理多张营地地图、在属性面板中配置节点样式与房间业务信息，并提供**只读预览页**用于查看布局和确认房间分配。
+用于绘制营地布局（编号房间、墙体、文字标注等）、管理多张营地地图、在属性面板中配置节点样式与房间业务信息，并提供**三个只读路由页面**分别用于预览与房间绑定、前台接待查询、房间分配。
+
+> 业务数据（营地树 / 房间 / 客人 / 可分配房间）当前均为**本地 mock**，字段结构对齐后端接口约定，接真实接口时只需替换对应数据层函数，页面与画布逻辑无需改动。
 
 ---
 
@@ -13,12 +15,15 @@
 | 对齐与排版 | 左/右/顶/底/水平居中/垂直居中 6 种对齐；水平/垂直间距均匀分布（≥3 个单元可用）；拖节点自动吸附对齐线 |
 | 标尺与参考线 | 顶部/左侧标尺；从标尺拖出自定参考线、节点拖动时吸附、参考线显隐与一键清除 |
 | 组合 | 支持组合/取消组合/移出成员；**支持嵌套组合**；点击选成员、拖动移成员、Alt 拖动移整组；组合整体复制粘贴、整体旋转 |
-| 节点库 | 编号房间、L 形墙、直线墙、矩形、圆、文字（文字节点按内容自适应尺寸） |
-| 属性面板 | 单选编辑文字/字号/颜色/加粗、位置尺寸、填充/描边/圆角/墙厚；编号房间的归属公司、面积标注、顶部色条；多节点批量样式（含房间专属批量项） |
+| 节点库 | 编号房间、L 形墙、直线墙、矩形、圆、文字（文字节点按内容自适应尺寸，含多行） |
+| 属性面板 | 单选编辑文字/字号/颜色/加粗、位置尺寸、填充/描边/圆角/墙厚；编号房间的营地/区域/楼栋级联、房号下拉、归属公司、面积标注（默认隐藏）；多节点批量样式（含房间专属批量项） |
+| 房间号分配 | 房间节点通过**三级级联**选楼栋后从下拉选房号；`73/74` 自动显示为 `73` / `/` / `74` 三行；**房号全局唯一**，已绑定房号在下拉中隐藏；导出 / 保存草稿 / 切换地图前统一校验重复 |
 | 地图管理 | 多张营地地图的新建/修改/删除/切换；名称去重、位置级联多选；切换地图自动保存旧画布、加载目标画布 |
-| 数据存取 | 画布导出/导入 JSON、保存/恢复草稿、清空画布（二次确认、可撤销）、示例 JSON 可直接导入 |
-| 只读预览 | 独立路由页面，原比例展示、可滚动、禁编辑；点击房间查看/确认分配/解除绑定；点击普通节点弹出信息卡；未分配房间置灰 |
-| 事件开关 | 非房间节点可配置预览态的点击 / hover 交互；房间交互由分配状态控制 |
+| 数据存取 | 画布导出/导入 JSON、保存/恢复草稿、清空画布（二次确认、可撤销）、示例 JSON 可直接导入；导入 / 恢复草稿 / 切换地图均**重置缩放为 100%** |
+| 只读预览 `/preview` | 原比例展示、可滚动、禁编辑；点击房间弹框可绑定/解绑房号（互斥、唯一性校验），点击普通节点弹信息卡；未绑定房号不可选 |
+| 前台接待 `/reception` | 只读；hover 房间节点显示客人卡片（Previous / Next / Current / Assigned，2×2、缺席不占位）；**已入住房间**（有 Current Guest）body 填 `#fcfdbb`、文字填 `#b8b6b6`；分配结果实时同步 |
+| 房间分配 `/room-allocate` | 只读；可分配房间保持原色、`pointer`，不可分配房间灰化、`not-allowed` 且点击无响应；点击弹确认框（房间信息 + PAX 信息），确认后写入分配记录并跳转 `/reception` |
+| 事件开关 | 非房间节点可配置预览态的点击 / hover 交互；房间交互由分配 / 入住状态控制 |
 
 ---
 
@@ -61,9 +66,13 @@ pnpm preview
 
 | 路由 | 页面 | 说明 |
 | --- | --- | --- |
-| `/` | [HomeView.vue](src/views/HomeView.vue) | 编辑页，三栏布局 |
-| `/preview` | [PreviewView.vue](src/views/PreviewView.vue) | 只读预览页，由编辑页点击「预览」后新标签页打开 |
+| `/` | [HomeView.vue](src/views/HomeView.vue) | 编辑页，三栏布局；工具栏「预览 / 前台接待 / 房间分配」分别新开对应只读页 |
+| `/preview` | [PreviewView.vue](src/views/PreviewView.vue) | 只读预览页：房间分配/解绑弹框、普通节点信息卡 |
+| `/reception` | [ReceptionView.vue](src/views/ReceptionView.vue) | 前台接待页：房间 hover 客人卡片、已入住染色 |
+| `/room-allocate` | [RoomAllocateView.vue](src/views/RoomAllocateView.vue) | 房间分配页：可分配判定 + 确认弹框，确认后跳 `/reception` |
 | `/about` | AboutView.vue | 脚手架占位页 |
+
+三个只读页由编辑页在跳转前统一把当前画布 JSON 写入 `localStorage`（键 `camp-map-preview`）共享，页面加载后原样渲染；均禁用平移 / 缩放 / 拖拽 / 框选 / 快捷键 / 旋转手柄，`/preview` 额外保留点击交互。
 
 ### 编辑页布局
 
@@ -85,10 +94,10 @@ pnpm preview
 
 | 节点 | 说明 |
 | --- | --- |
-| 编号房间 | 竖向房间块：顶部色条 + 居中加粗编号 + 可选面积标注；顶部色条与描边颜色由「归属公司」统一驱动 |
+| 编号房间 | 竖向房间块：顶部色条 + 居中加粗编号 + 可选面积标注（默认隐藏）；房号、营地归属可在属性面板配置，顶部色条与描边颜色由「归属公司」统一驱动 |
 | L 形墙 / 直线墙 | 墙体按节点包围盒绘制，拖动缩放时与选框严丝合缝；墙厚由属性面板控制 |
-| 矩形 / 圆 | 基础图形，可编辑填充、描边、圆角、文字 |
-| 文字 | 透明本体、仅显示文字，尺寸随文字内容自适应；可设加粗 |
+| 矩形 / 圆 | 基础图形，可编辑填充、描边、圆角（默认 0）、文字 |
+| 文字 | 透明本体、仅显示文字，尺寸随文字内容自适应（含多行、自动换行场景），可设加粗 |
 | 组合容器 | 组合时自动生成的隐形父节点，平时不可见，hover 整组时显示轮廓 |
 
 ### 右键菜单
@@ -130,12 +139,23 @@ pnpm preview
 | 键 | 内容 |
 | --- | --- |
 | `camp-maps` | 营地地图列表：名称、位置（级联多选路径）、画布 JSON、创建/更新时间 |
-| `camp-map-preview` | 编辑页跳转预览前写入的当前画布 JSON（同源共享） |
-| 草稿键 | 「保存草稿」写入的画布 JSON 及保存时间，页面启动时会询问是否恢复 |
+| `camp-map-preview` | 编辑页跳转三个只读页前写入的当前画布 JSON（页面间同源共享） |
+| `camp-map-draft` | 「保存草稿」写入的画布 JSON 及保存时间，页面启动时会询问是否恢复 |
+| `camp-map-allocations` | 房间分配结果：key 为节点 id，供 `/reception` 页读取实现数据同步 |
 
 - 画布节点上的业务数据随 JSON 一起导入导出：`node.data.room`（房间信息，见 [GraphEditor.ts](src/graph/GraphEditor.ts) 的 `RoomInfo`）、`node.data.events`（预览事件开关）。
-- [companyColors.ts](src/graph/companyColors.ts) 提供 19 条归属公司配色样例；字段结构与后端接口约定一致，可把 `getCompanyColors()` 换成接口请求，UI 无需改动。
-- [campMaps.ts](src/graph/campMaps.ts) 中的位置级联选项为示例数据（中东/非洲/亚洲），可在 `LOCATION_OPTIONS` 中替换为真实营地，或改为接口下发。
+- 房号按**原始值**做唯一性校验，`formatRoomNoForDisplay()` 只负责把 `73/74` 转成画布上显示的三行文本。
+
+### Mock 数据层（可整体替换为接口）
+
+| 文件 | 提供能力 | 接接口时替换 |
+| --- | --- | --- |
+| [campData.ts](src/graph/campData.ts) | 营地三级树、按楼栋房间列表、房号反查与显示格式化、全部房号选项 | `getCampTree()` / `getRoomsByBuilding()` |
+| [receptionData.ts](src/graph/receptionData.ts) | 6 种场景的客人卡片数据、分配记录转卡片、无人房判定 | `getRoomGuestInfo()` |
+| [allocationData.ts](src/graph/allocationData.ts) | 房间可分配判定、确认弹框数据、分配记录读写 | `isRoomAllocatable()` / `getAllocationRoom()` |
+| [companyColors.ts](src/graph/companyColors.ts) | 19 条归属公司配色样例 | `getCompanyColors()` |
+| [campMaps.ts](src/graph/campMaps.ts) | 地图列表本地存储与位置级联选项（`LOCATION_OPTIONS`） | 存储与选项数据源 |
+
 - [example/](example/) 目录下有若干历史画布 JSON，可直接通过工具栏「导入」体验。
 
 ---
@@ -145,26 +165,32 @@ pnpm preview
 ```
 src/
 ├── main.ts                  # 应用入口（注册路由、Element Plus）
-├── router/index.ts          # 路由：/、/preview、/about
+├── router/index.ts          # 路由：/、/preview、/reception、/room-allocate、/about
 ├── views/
 │   ├── HomeView.vue         # 编辑页：三栏布局、工具栏、右键菜单、导入导出/草稿/地图切换
-│   └── PreviewView.vue      # 只读预览页：房间详情弹框、节点信息卡
+│   ├── PreviewView.vue      # 只读预览页：房间分配/解绑弹框、节点信息卡
+│   ├── ReceptionView.vue    # 前台接待页：房间 hover 客人卡片、已入住染色
+│   └── RoomAllocateView.vue # 房间分配页：可分配判定、确认弹框、跳转 reception
 ├── components/
 │   ├── NodePalette.vue      # 左侧节点库（拖放创建）
 │   ├── CampMapList.vue      # 左侧营地地图列表（增删改切）
 │   ├── PropertyPanel.vue    # 右侧属性面板（单选 / 批量 / 房间批量）
 │   └── ContextMenu.vue      # 动态右键菜单
 └── graph/
-    ├── GraphEditor.ts       # 全部画布逻辑封装（~3500 行）：插件、事件、组合、对齐、参考线、预览
+    ├── GraphEditor.ts       # 全部画布逻辑封装：插件、事件、组合、对齐、参考线、房间绑定/染色/可分配判定
     ├── shapes.ts            # 自定义节点注册与节点库元数据
+    ├── campData.ts          # 营地树 / 房间 mock 数据层
+    ├── receptionData.ts     # 前台接待客人 mock 数据层
+    ├── allocationData.ts    # 房间分配 mock 数据层与 localStorage 记录
     ├── companyColors.ts     # 归属公司配色数据（可替换为接口）
     ├── campMaps.ts          # 营地地图列表的本地存储与位置选项
-    └── guides.css           # 参考线与预览 hover 高亮样式
+    └── guides.css           # 参考线、预览 hover 高亮、房间可分配/不可分配样式
 ```
 
 ### 架构说明
 
-- 画布能力全部封装在 `GraphEditor` 类中，Vue 组件只负责调用与 UI 呈现；类只回抛「能力状态」（如 `canGroup`、`canUngroup`），菜单文案等留在视图层。
-- 新增画布能力优先在类中加公开方法，组件通过 `editor.value?.xxx()` 调用。
-- 编辑态与预览态复用同一个类：预览通过 `init(true)` 关闭平移/缩放/拖拽/框选/快捷键/旋转手柄，仅保留点击查看。
+- 画布能力全部封装在 `GraphEditor` 类中，Vue 组件只负责调用与 UI 呈现；类只回抛「能力状态」（如 `canGroup`、`canUngroup`、房间是否可分配），菜单文案等业务定义留在视图层。
+- 新增画布能力优先在类中加公开方法，组件通过 `editor.value?.xxx()` 调用，不直接访问 X6 实例。
+- 编辑态与三个只读页复用同一个类：只读模式通过 `init(true)` 关闭平移/缩放/拖拽/框选/快捷键/旋转手柄，仅保留点击查看/hover。
+- 房间相关判定（房号唯一性、已入住、可分配）的数据源集中在 `graph/` 下的三个 mock 数据层；画布类只提供批量染色 / 打标记的通用方法，判定函数由页面注入，避免业务规则写死在画布层。
 - 路径别名 `@` 指向 `src`（Vite 与 tsconfig 均已配置）。
